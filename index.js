@@ -16,6 +16,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
   if (user.bot) return;
   if (!reaction.message.guild) return;
   if (reaction.message.channel.id == config.channel) {
+    console.log(reaction.emoji.id)
     for (const key in emojis) {
       if (reaction.emoji.id === `${emojis[key]}`) {
         var currentEmoji = `${key}`
