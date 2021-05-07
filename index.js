@@ -32,6 +32,16 @@ client.on('messageReactionAdd', async (reaction, user) => {
         .get(user.id)
         .roles.add(roles.wow);
     }
+    if (reaction.emoji.id === emojis.overwatch) {
+      await reaction.message.guild.members.cache
+        .get(user.id)
+        .roles.add(roles.overwatch);
+    }
+    if (reaction.emoji.id === emojis.csgo) {
+      await reaction.message.guild.members.cache
+        .get(user.id)
+        .roles.add(roles.csgo);
+    }
   } else return;
 });
 
@@ -55,6 +65,16 @@ client.on('messageReactionRemove', async (reaction, user) => {
       await reaction.message.guild.members.cache
         .get(user.id)
         .roles.remove(roles.wow);
+    }
+    if (reaction.emoji.id === emojis.overwatch) {
+      await reaction.message.guild.members.cache
+        .get(user.id)
+        .roles.remove(roles.overwatch);
+    }
+    if (reaction.emoji.id === emojis.csgo) {
+      await reaction.message.guild.members.cache
+        .get(user.id)
+        .roles.remove(roles.csgo);
     }
   } else return;
 });
