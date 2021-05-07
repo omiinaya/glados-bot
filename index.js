@@ -42,6 +42,11 @@ client.on('messageReactionAdd', async (reaction, user) => {
         .get(user.id)
         .roles.add(roles.csgo);
     }
+    if (reaction.emoji.id === emojis.minecraft) {
+      await reaction.message.guild.members.cache
+        .get(user.id)
+        .roles.add(roles.minecraft);
+    }
   } else return;
 });
 
@@ -75,6 +80,11 @@ client.on('messageReactionRemove', async (reaction, user) => {
       await reaction.message.guild.members.cache
         .get(user.id)
         .roles.remove(roles.csgo);
+    }
+    if (reaction.emoji.id === emojis.minecraft) {
+      await reaction.message.guild.members.cache
+        .get(user.id)
+        .roles.remove(roles.minecraft);
     }
   } else return;
 });
