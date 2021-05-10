@@ -38,12 +38,12 @@ var roles = {
 }
 
 var music = {
-    max_playlist_size: '',
-    prefix: '',
+    max_playlist_size: '10',
+    prefix: '/',
     pruning: false,
     locale: "en",
     stay_time: "30",
     default_volume: "100"
 }
 
-module.exports = { config, emojis, roles }
+module.exports = { config, emojis, roles, music }
