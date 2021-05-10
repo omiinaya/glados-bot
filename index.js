@@ -7,10 +7,13 @@ const client = new Discord.Client({
 });
 const startRolesModule = require('./roles')
 const startMusicModule = require('./music')
+const startTwitchModule = require('./twitch')
 
 client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => {
   startRolesModule(client, config, emojis, roles)
+  startMusicModule()
+  startTwitchModule()
   console.log('The bot has been started!')
 });
