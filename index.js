@@ -23,7 +23,7 @@ async function toggleRole(reaction, user, action) {
   if (reaction.partial) await reaction.fetch();
   if (user.bot) return;
   if (!reaction.message.guild) return;
-  if (reaction.message.channel.id == config.channel) {
+  if (reaction.message.id == config.message) {
     console.log(reaction.emoji.id)
     for (const key in emojis) {
       if (reaction.emoji.id === `${emojis[key]}`) {
