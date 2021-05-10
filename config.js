@@ -37,4 +37,13 @@ var roles = {
     twitch: '838033694337662986'
 }
 
+var music = {
+    max_playlist_size: '',
+    prefix: '',
+    pruning: false,
+    locale: "en",
+    stay_time: "30",
+    default_volume: "100"
+}
+
 module.exports = { config, emojis, roles }

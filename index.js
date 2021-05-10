@@ -5,31 +5,12 @@ const { config, emojis, roles } = require('./config')
 const client = new Discord.Client({
   partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
 });
+const startRolesModule = require('./roles')
+const startMusicModule = require('./music')
 
 client.login(process.env.BOT_TOKEN);
 
-client.on('ready', () => console.log('The bot has been started!'));
-
-client.on('messageReactionAdd', (reaction, user) => {
-  toggleRole(reaction, user, 'add')
+client.on('ready', () => {
+  startRolesModule(client, config, emojis, roles)
+  console.log('The bot has been started!')
 });
-
-client.on('messageReactionRemove', (reaction, user) => {
-  toggleRole(reaction, user, 'remove')
-});
-
-async function toggleRole(reaction, user, action) {
-  if (reaction.message.partial) await reaction.message.fetch();
-  if (reaction.partial) await reaction.fetch();
-  if (user.bot) return;
-  if (!reaction.message.guild) return;
-  if (reaction.message.id == config.message) {
-    console.log(reaction.emoji.id)
-    for (const key in emojis) {
-      if (reaction.emoji.id === `${emojis[key]}`) {
-        var currentEmoji = `${key}`
-        await reaction.message.guild.members.cache.get(user.id).roles[action](roles[currentEmoji]);
-      }
-    }
-  } else return;
-}
