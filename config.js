@@ -46,4 +46,14 @@ var music = {
     default_volume: "100"
 }
 
-module.exports = { config, emojis, roles, music }
+function canModifyQueue(member) {
+    const { channelID } = member.voice;
+    const botChannel = member.guild.voice.channelID;
+
+    if (channelID !== botChannel) {
+        return;
+    }
+    return true;
+}
+
+module.exports = { config, emojis, roles, music, canModifyQueue }
