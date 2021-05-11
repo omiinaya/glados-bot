@@ -1,7 +1,7 @@
-const { LOCALE } = require("../util/EvobotUtil");
+const { music } = require('../config')
 const i18n = require("i18n");
 
-i18n.setLocale(LOCALE);
+i18n.setLocale(music.locale);
 
 module.exports = {
   name: "uptime",

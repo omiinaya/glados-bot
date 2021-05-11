@@ -22,7 +22,7 @@ client.login(process.env.BOT_TOKEN);
 
 client.on('ready', () => {
   startRolesModule(client, config, emojis, roles)
-  //startMusicModule(client, fs, path, Discord, music, i18n, PREFIX)
+  startMusicModule(client, fs, path, Discord, music, i18n, PREFIX)
   startTwitchModule()
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "LISTENING" });
