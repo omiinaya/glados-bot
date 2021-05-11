@@ -44,7 +44,7 @@ var music = {
     prefix: '@',
     pruning: false,
     locale: "en",
-    stay_time: "30",
+    stay_time: "15",
     default_volume: "100"
 }
 

@@ -21,11 +21,11 @@ module.exports = {
 
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!channel) return message.reply(i18n.__("play.errorNotChannel")).catch(console.error);
-    if (serverQueue && channel !== message.guild.me.voice.channel)
+    /*if (serverQueue && channel !== message.guild.me.voice.channel)
       return message
         .reply(i18n.__mf("play.errorNotInSameChannel", { user: message.client.user }))
         .catch(console.error);
-
+    */
     if (!args.length)
       return message
         .reply(i18n.__mf("play.usageReply", { prefix: message.client.prefix }))
