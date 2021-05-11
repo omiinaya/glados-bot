@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/omiinaya/discord-bot#readme",
   "dependencies": {
+    "@discordjs/opus": "^0.5.0",
     "array-move": "^3.0.1",
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.0",
