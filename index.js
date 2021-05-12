@@ -13,18 +13,17 @@ const client = new Discord.Client({
 
 const { config, emojis, roles, music } = require('./config')
 const PREFIX = music.prefix
+const LOCALE = music.locale
 
 const startRolesModule = require('./modules/roles')
 const startMusicModule = require('./modules/music')
 const startTwitchModule = require('./modules/twitch')
 
 client.login(process.env.BOT_TOKEN);
-
+/*
 client.on("message", msg => {
   if (msg.content.toLowerCase().startsWith(PREFIX + "clearchat")) {
     if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
-      msg.channel.send('test')
-
       async function clear() {
         msg.delete();
         const fetched = await msg.channel.messages.fetch({ limit: 99 });
@@ -32,11 +31,11 @@ client.on("message", msg => {
       }
       clear();
     } else {
-      msg.channel.send('test')
+      msg.channel.send('You are not authorized to run this command.')
     }
   }
 });
-
+*/
 client.on('ready', () => {
   startRolesModule(client, config, emojis, roles)
   startMusicModule(client, fs, path, Discord, music, i18n, PREFIX)
@@ -44,3 +43,5 @@ client.on('ready', () => {
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "LISTENING" });
 });
+
+module.exports = { client, PREFIX, i18n, LOCALE }

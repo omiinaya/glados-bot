@@ -39,6 +39,12 @@ var roles = {
     youtube:   '841544614170722334'
 }
 
+var twitch = {
+    interval: '',
+    apiUrl: "https://api.twitch.tv/kraken",
+    timeout: 2*60*1000
+}
+
 var music = {
     max_playlist_size: '10',
     prefix: '@',

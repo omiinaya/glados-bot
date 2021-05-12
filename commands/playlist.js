@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { play } = require("../include/play");
+const { play } = require("../modules/player");
 const YouTubeAPI = require("simple-youtube-api");
 const scdl = require("soundcloud-downloader").default;
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
