@@ -40,7 +40,7 @@ var roles = {
 }
 
 var twitch = {
-    interval: '',
+    interval: '5',
     apiUrl: "https://api.twitch.tv/kraken",
     timeout: 2*60*1000
 }
