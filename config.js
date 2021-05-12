@@ -64,4 +64,4 @@ function canModifyQueue(member) {
     return true;
 }
 
-module.exports = { config, emojis, roles, music, canModifyQueue }
+module.exports = { config, emojis, roles, music, twitch, canModifyQueue }
