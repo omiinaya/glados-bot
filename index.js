@@ -20,22 +20,7 @@ const startMusicModule = require('./modules/music')
 const startTwitchModule = require('./modules/twitch')
 
 client.login(process.env.BOT_TOKEN);
-/*
-client.on("message", msg => {
-  if (msg.content.toLowerCase().startsWith(PREFIX + "clearchat")) {
-    if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
-      async function clear() {
-        msg.delete();
-        const fetched = await msg.channel.messages.fetch({ limit: 99 });
-        msg.channel.bulkDelete(fetched);
-      }
-      clear();
-    } else {
-      msg.channel.send('You are not authorized to run this command.')
-    }
-  }
-});
-*/
+
 client.on('ready', () => {
   startRolesModule(client, config, emojis, roles)
   startMusicModule(client, fs, path, Discord, music, i18n, PREFIX)

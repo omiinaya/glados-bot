@@ -164,6 +164,6 @@
 		"errorCommend": "There was an error executing that command."
 	},
 	"clearchat": {
-		"description": "Test"
+		"description": "Clears last 100 messages on a channel (Admin Only)."
 	}
 }
