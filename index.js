@@ -18,7 +18,8 @@ const TOKEN = process.env.BOT_TOKEN
 
 const startRolesModule = require('./modules/roles')
 const startMusicModule = require('./modules/music')
-const startTwitchModule = require('./modules/twitch')
+//const startTwitchModule = require('./modules/twitch')
+//const { startTwitchModule } = require('./modules/twitch2')
 
 client.login(TOKEN);
 
@@ -26,6 +27,7 @@ client.on('ready', () => {
   startRolesModule(client, config, emojis, roles)
   startMusicModule(client, fs, path, Discord, music, i18n, PREFIX)
   //startTwitchModule(fs, Discord, client, twitch, TOKEN)
+  //startTwitchModule(client)
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "LISTENING" });
 });

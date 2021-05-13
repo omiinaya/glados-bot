@@ -1,16 +1,1 @@
-[
-    {
-        "name": "VeryProfessional",
-        "lastPrefix": "!",
-        "prefix": "/",
-        "role": "Sullen",
-        "discordChannels": [],
-        "twitchChannels": [
-            {
-                "name": "Taegya",
-                "timestamp": 0,
-                "online": false
-            }
-        ]
-    }
-]
+[]

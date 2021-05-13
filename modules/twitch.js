@@ -121,18 +121,19 @@ var twitchModule = (
 
 
         function apiCallback(server, twitchChannel, res) {
+            console.log(res)
             if (res && !twitchChannel.online && res.stream &&
                 twitchChannel.timestamp + timeout <= Date.now()) {
                 try {
                     var channels = [], defaultChannel;
-                    var guild = bot.guilds.find("VeryProfessional", server.name);
+                    var guild = bot.guilds.find("name", server.name);
 
 
                     if (server.discordChannels.length === 0) {
                         defaultChannel = guild.channels.find("type", "text");
                     } else {
                         for (let i = 0; i < server.discordChannels.length; i++) {
-                            channels.push(guild.channels.find("testing-chat", server.discordChannels[i]));
+                            channels.push(guild.channels.find("name", server.discordChannels[i]));
                         }
                     }
                     var embed = new Discord.RichEmbed()
