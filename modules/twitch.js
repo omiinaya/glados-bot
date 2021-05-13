@@ -7,6 +7,7 @@ var twitchModule = (
             channelPath = __dirname + "/.channels",
             token = TOKEN,
             twitchClientID = process.env.TWITCH_CLIENT_ID,
+            twitchOAuthID = process.env.TWITCH_OAUTH_ID,
             interval = twitch.interval,
             apiUrl = twitch.apiUrl,
             timeout = twitch.timeout;
@@ -71,16 +72,15 @@ var twitchModule = (
             try {
                 var apiPath;
                 if (getStreamInfo) {
-                    apiPath = "/kraken/streams/" + twitchChannel.name.trim();
-                } else {
-                    apiPath = "/kraken/channels/" + twitchChannel.name.trim();
+                    apiPath = "/helix/users?login=Asmongold"// + twitchChannel.name.trim();
                 }
                 opt = {
                     host: "api.twitch.tv",
                     path: apiPath,
                     headers: {
                         "Client-ID": twitchClientID,
-                        Accept: "application/vnd.twitchtv.v3+json"
+                        "Authorization": 'Bearer ' + twitchOAuthID,
+                        Accept: "application/vnd.twitchtv.v5+json"
                     }
                 };
             }
@@ -94,12 +94,14 @@ var twitchModule = (
 
                 res.on("data", (chunk) => {
                     body += chunk;
+                    //console.log(body)
                 });
 
                 res.on("end", () => {
                     var json;
                     try {
                         json = JSON.parse(body);
+                        //console.log(json)
                     }
                     catch (err) {
                         print(err);
@@ -123,14 +125,14 @@ var twitchModule = (
                 twitchChannel.timestamp + timeout <= Date.now()) {
                 try {
                     var channels = [], defaultChannel;
-                    var guild = bot.guilds.find("name", server.name);
+                    var guild = bot.guilds.find("VeryProfessional", server.name);
 
 
                     if (server.discordChannels.length === 0) {
                         defaultChannel = guild.channels.find("type", "text");
                     } else {
                         for (let i = 0; i < server.discordChannels.length; i++) {
-                            channels.push(guild.channels.find("name", server.discordChannels[i]));
+                            channels.push(guild.channels.find("testing-chat", server.discordChannels[i]));
                         }
                     }
                     var embed = new Discord.RichEmbed()
