@@ -11,25 +11,7 @@ const twitchOAuthID = process.env.TWITCH_OAUTH_ID
 const channels = require('./channels.json')
 
 function startTwitchModule() {
-    getStreamStatus('Taegya')
     tick(twitch.interval)
-}
-
-function getStreamStatus(input) {
-    var url = "https://api.twitch.tv/helix/search/channels?query=" + input
-    axios.get(url, {
-        headers: {
-            'Client-ID': twitchClientID,
-            'Authorization': twitchOAuthID
-        }
-    }).then(res => {
-        var streamers = res.data.data
-        streamers.forEach((streamer) => {
-            if (streamer.display_name == input) {
-                console.log(streamer.is_live)
-            }
-        })
-    })
 }
 
 function leadingZero(d) {
@@ -55,7 +37,7 @@ function print(msg, err) {
 function tick(interval) {
     var x = 0
     const tock = setInterval(function () {
-        readFile()
+        getList()
         print(x + 1)
         x++;
         if (x >= 5) {
@@ -64,10 +46,30 @@ function tick(interval) {
     }, interval * 1000);
 }
 
-function readFile() {
+function getList() {
     fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
         var json = JSON.parse(data)
-        console.log(json.data[0])
+        var streamers = json.data
+        streamers.forEach(streamer => {
+            getStreamStatus(streamer.name)
+        })
+    })
+}
+
+function getStreamStatus(input) {
+    var url = "https://api.twitch.tv/helix/search/channels?query=" + input
+    axios.get(url, {
+        headers: {
+            'Client-ID': twitchClientID,
+            'Authorization': twitchOAuthID
+        }
+    }).then(res => {
+        var streamers = res.data.data
+        streamers.forEach((streamer) => {
+            if (streamer.display_name == input) {
+                print(streamer.display_name+ ": " +streamer.is_live)
+            }
+        })
     })
 }
 //check if last was offline and new is online then alert
