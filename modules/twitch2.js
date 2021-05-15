@@ -7,9 +7,6 @@ const { twitch } = require('../config')
 const twitchClientID = process.env.TWITCH_CLIENT_ID
 const twitchOAuthID = process.env.TWITCH_OAUTH_ID
 
-//json db
-const channels = require('./channels.json')
-
 function startTwitchModule() {
     tick(twitch.interval)
 }
@@ -35,14 +32,17 @@ function print(msg, err) {
 }
 
 function tick(interval) {
-    var x = 0
+    //var x = 0
     const tock = setInterval(function () {
         getList()
+        console.log('-----------------------------------')
+        /*
         print(x + 1)
         x++;
         if (x >= 5) {
             clearInterval(tock);
         }
+        */
     }, interval * 1000);
 }
 
@@ -67,11 +67,17 @@ function getStreamStatus(input) {
         var streamers = res.data.data
         streamers.forEach((streamer) => {
             if (streamer.display_name == input) {
-                print(streamer.display_name+ ": " +streamer.is_live)
+                updateList(streamer.display_name, streamer.is_live)
             }
         })
     })
 }
+
+function updateList(name, status) {
+    print(name+ ": " +status)
+}
+
+
 //check if last was offline and new is online then alert
 
 module.exports = { startTwitchModule }
