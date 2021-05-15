@@ -1,8 +1,14 @@
+//dependencies
 const axios = require('axios')
+const fs = require('fs')
 const { twitch } = require('../config')
 
+//environment variables
 const twitchClientID = process.env.TWITCH_CLIENT_ID
 const twitchOAuthID = process.env.TWITCH_OAUTH_ID
+
+//json db
+const channels = require('./channels.json')
 
 function startTwitchModule() {
     getStreamStatus('Taegya')
@@ -26,15 +32,43 @@ function getStreamStatus(input) {
     })
 }
 
+function leadingZero(d) {
+    if (d < 10) {
+        return "0" + d;
+    } else {
+        return d;
+    }
+}
+
+function print(msg, err) {
+    var date = new Date();
+    var h = leadingZero(date.getHours());
+    var m = leadingZero(date.getMinutes());
+    var s = leadingZero(date.getSeconds());
+
+    console.log("[" + h + ":" + m + ":" + s + "]", msg);
+    if (err) {
+        console.log(err);
+    }
+}
+
 function tick(interval) {
     var x = 0
-    const tock = setInterval(function() {
-        console.log(x+1)
+    const tock = setInterval(function () {
+        readFile()
+        print(x + 1)
         x++;
         if (x >= 5) {
             clearInterval(tock);
-         }
-      }, interval * 1000);
+        }
+    }, interval * 1000);
+}
+
+function readFile() {
+    fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
+        var json = JSON.parse(data)
+        console.log(json.data[0])
+    })
 }
 //check if last was offline and new is online then alert
 

@@ -1,0 +1,14 @@
+{
+    "data": [
+        {
+            "id": 0,
+            "name": "Taegya",
+            "status": false
+        },
+        {
+            "id": 1,
+            "name": "Asmongold",
+            "status": false
+        }
+    ]
+}
