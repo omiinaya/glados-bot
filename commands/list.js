@@ -14,6 +14,7 @@ var list = {
             fs.readFile(pth, "utf-8", function read(err, data) {
                 var json = JSON.parse(data)
                 var streamers = json.data
+                var str = ''
                 streamers.forEach(streamer => {
                     console.log(streamer.name)
                 })

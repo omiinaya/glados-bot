@@ -1,1 +1,29 @@
-{"data":[{"id":0,"name":"Taegya","status":false},{"id":1,"name":"mikey2700","status":false},{"id":2,"name":"HiddenBeast_","status":false},{"id":4,"name":"dotNF","status":false},{"id":5,"name":"Donnahh","status":false}]}
+{
+    "data": [
+        {
+            "id": 0,
+            "name": "Taegya",
+            "status": false
+        },
+        {
+            "id": 1,
+            "name": "mikey2700",
+            "status": false
+        },
+        {
+            "id": 2,
+            "name": "HiddenBeast_",
+            "status": false
+        },
+        {
+            "id": 4,
+            "name": "dotNF",
+            "status": false
+        },
+        {
+            "id": 5,
+            "name": "Donnahh",
+            "status": false
+        }
+    ]
+}

@@ -29,11 +29,10 @@ var add = {
                         var json = JSON.parse(data)
                         var streamers = json.data
                         var newId = streamers.length + 1
-                        console.log(res.data.data[0].display_name)
                         //check if the list already contains a streamer with the name provided
                         if (streamers.some(streamer => streamer.name === res.data.data[0].display_name)) {
                             //alert streamer has already been added
-                            msg.reply('This streamer is alreday on the list.')
+                            msg.reply(res.data.data[0].display_name + ' is alreday on the list.')
                         } else {
                             //if name isnt found on list, then add it
                             json.data.push({
