@@ -1,5 +1,6 @@
 //dependencies
 const axios = require('axios')
+const Discord = require('discord.js');
 const fs = require('fs')
 const { twitch } = require('../config')
 
@@ -7,8 +8,11 @@ const { twitch } = require('../config')
 const twitchClientID = process.env.TWITCH_CLIENT_ID
 const twitchOAuthID = process.env.TWITCH_OAUTH_ID
 
-function startTwitchModule() {
+let Client;
+
+function startTwitchModule(client) {
     console.log("Twitch module initialized.")
+    Client = client
     tick(twitch.interval)
 }
 
@@ -98,14 +102,20 @@ function updateList(name, status, title, game, thumbnail) {
 }
 
 function discordAlert(name, title, game, thumbnail) {
-    console.log(name + " is now live on Twitch!")
-    console.log(title)
-    console.log(game)
-    console.log(thumbnail)
-    //discord alerts channel
+    const Embed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle(name + "is now live on Twitch!")
+	.setURL('https://twitch.tv/'+name)
+	.setDescription(game)
+	.setThumbnail('https://i.imgur.com/OsnSOeR.png')
+	.addFields(
+		{ name: title, value: '\u200B' }
+	)
+	.setImage(thumbnail)
+	.setTimestamp()
+	.setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
+
+    Client.channels.cache.get(twitch.channel).send(Embed);
 }
-
-
-//check if last was offline and new is online then alert
 
 module.exports = { startTwitchModule }

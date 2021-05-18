@@ -42,7 +42,8 @@ var roles = {
 var twitch = {
     interval: 5,
     apiUrl: "https://api.twitch.tv/kraken",
-    timeout: 2*60*1000
+    timeout: 2*60*1000,
+    channel: '839566399097667594'
 }
 
 var music = {
