@@ -74,7 +74,22 @@ function getStreamStatus(input) {
 }
 
 function updateList(name, status) {
-    print(name+ ": " +status)
+    fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
+        var json = JSON.parse(data)
+        var streamers = json.data
+        streamers.forEach(streamer => {
+            if (name === streamer.name) {
+                streamer.status = status;
+            }
+        })
+        var data = JSON.stringify(json)
+        fs.writeFile(__dirname + "/channels.json", data, (error) => {
+            if (error) { 
+                console.log(error)
+            }
+        })
+        print(name+ ": " +status)
+    })
 }
 
 
