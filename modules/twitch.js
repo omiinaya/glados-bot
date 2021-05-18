@@ -68,13 +68,13 @@ function getStreamStatus(input) {
         var streamers = res.data.data
         streamers.forEach((streamer) => {
             if (streamer.display_name == input) {
-                updateList(streamer.display_name, streamer.is_live)
+                updateList(streamer.display_name, streamer.is_live, streamer.title, streamer.game_name, streamer.thumbnail_url)
             }
         })
     })
 }
 
-function updateList(name, status) {
+function updateList(name, status, title, game, thumbnail) {
     fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
         var json = JSON.parse(data)
         var streamers = json.data
@@ -89,7 +89,7 @@ function updateList(name, status) {
                     }
                 })
                 if (status == true) {
-                    discordAlert()
+                    discordAlert(name, title, game, thumbnail)
                 }
             }
         })
@@ -97,8 +97,11 @@ function updateList(name, status) {
     })
 }
 
-function discordAlert() {
-    console.log("test")
+function discordAlert(name, title, game, thumbnail) {
+    console.log(name + " is now live on Twitch!")
+    console.log(title)
+    console.log(game)
+    console.log(thumbnail)
     //discord alerts channel
 }
 
