@@ -1,12 +1,11 @@
-const { client, PREFIX, i18n, LOCALE } = require('../index')
+const { PREFIX, i18n, LOCALE } = require('../index')
 
 i18n.setLocale(LOCALE);
 
 var clearchat = {
     name: "clearchat",
     description: i18n.__('clearchat.description'),
-    async execute() {
-    client.on("message", msg => {
+    execute(msg) {
         if (msg.content.toLowerCase().startsWith(PREFIX + "clearchat")) {
             if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
                 async function clear() {
@@ -19,8 +18,7 @@ var clearchat = {
                 msg.channel.send('You are not authorized to use this command.')
             }
         }
-    })
-  }
+    }
 }
 
 module.exports = clearchat

@@ -1,8 +1,8 @@
 const ytdl = require("ytdl-core-discord");
 const scdl = require("soundcloud-downloader").default;
-const { music, canModifyQueue } = require('../config')
+const { config, canModifyQueue } = require('../config')
 const i18n = require("i18n");
-i18n.setLocale(music.locale);
+i18n.setLocale(config.locale);
 
 module.exports = {
   async play(song, message) {

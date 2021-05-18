@@ -4,11 +4,11 @@ const YouTubeAPI = require("simple-youtube-api");
 const scdl = require("soundcloud-downloader").default;
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
-const { music } = require('../config')
+const { config } = require('../config')
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
 const i18n = require("i18n");
 
-i18n.setLocale(music.locale);
+i18n.setLocale(config.locale);
 
 module.exports = {
   name: "playlist",

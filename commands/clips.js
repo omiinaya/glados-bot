@@ -1,8 +1,8 @@
-const { music } = require('../config')
+const { config } = require('../config')
 const i18n = require("i18n");
 const fs = require("fs");
 
-i18n.setLocale(music.locale);
+i18n.setLocale(config.locale);
 
 module.exports = {
   name: "clips",

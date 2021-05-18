@@ -1,6 +1,8 @@
 var config = {
     channel: '839716692501594152',
-    message: '839717153141030932'
+    message: '839717153141030932',
+    prefix: '@',
+    locale: "en",
 }
 
 var emojis = {
@@ -48,7 +50,6 @@ var twitch = {
 
 var music = {
     max_playlist_size: '10',
-    prefix: '@',
     pruning: false,
     locale: "en",
     stay_time: "15",

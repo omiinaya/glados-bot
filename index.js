@@ -12,8 +12,8 @@ const client = new Discord.Client({
 });
 
 const { config, emojis, roles, music, twitch } = require('./config')
-const PREFIX   = music.prefix
-const LOCALE   = music.locale
+const PREFIX   = config.prefix
+const LOCALE   = config.locale
 const TOKEN = process.env.BOT_TOKEN
 
 const startRolesModule = require('./modules/roles')

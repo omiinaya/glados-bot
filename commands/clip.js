@@ -1,6 +1,6 @@
-const { music } = require('../config')
+const { config } = require('../config')
 const i18n = require("i18n");
-i18n.setLocale(music.locale);
+i18n.setLocale(config.locale);
 
 var clip = {
   name: "clip",

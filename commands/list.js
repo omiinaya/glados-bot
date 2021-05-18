@@ -1,4 +1,4 @@
-const { client, PREFIX, i18n, LOCALE } = require('../index')
+const { PREFIX, i18n, LOCALE } = require('../index')
 const fs = require('fs')
 const path = require('path')
 
