@@ -34,6 +34,7 @@ var clearchat = {
                             //check if the list already contains a streamer with the name provided
                             if (streamers.some(streamer => streamer.name === res.data.data[0].display_name)) {
                                 //alert streamer has already been added
+                                msg.reply('This streamer is alreday on the list.')
                             } else {
                                 //if name isnt found on list, then add it
                                 json.data.push({
@@ -48,6 +49,7 @@ var clearchat = {
                                         console.log(error)
                                     }
                                 })
+                                msg.reply(res.data.data[0].display_name + ' has been added to the list.')
                             }
                         })
                     }

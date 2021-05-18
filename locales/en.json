@@ -168,5 +168,8 @@
 	},
 	"add": {
 		"description": "Enter channel name to add it to the alert list."
+	},
+	"list": {
+		"description": "list.description"
 	}
 }
