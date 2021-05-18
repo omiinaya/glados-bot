@@ -165,5 +165,8 @@
 	},
 	"clearchat": {
 		"description": "Clears last 100 messages on a channel (Admin Only)."
+	},
+	"add": {
+		"description": "add.description"
 	}
 }
