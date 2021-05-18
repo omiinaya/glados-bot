@@ -170,6 +170,6 @@
 		"description": "Enter channel name to add it to the alert list."
 	},
 	"list": {
-		"description": "list.description"
+		"description": "List of streamers currently in the alert list."
 	}
 }

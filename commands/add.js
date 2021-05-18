@@ -11,7 +11,7 @@ i18n.setLocale(LOCALE);
 
 var pth = path.join(__dirname, "../modules/channels.json")
 
-var clearchat = {
+var add = {
     name: "add",
     description: i18n.__('add.description'),
     async execute() {
@@ -60,4 +60,4 @@ var clearchat = {
     }
 }
 
-module.exports = clearchat
+module.exports = add
