@@ -52,7 +52,7 @@ var music = {
     pruning: false,
     locale: "en",
     stay_time: "15",
-    default_volume: "100"
+    default_volume: "30"
 }
 
 function canModifyQueue(member) {
