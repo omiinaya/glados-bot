@@ -22,8 +22,8 @@ var clearchat = {
                     var streamers = json.data
                     streamers.forEach(streamer => {
                         console.log(streamer.name)
-                        msg.reply('test')
                     })
+                    msg.reply(JSON.stringify(streamers))
                 })
             }
         })
