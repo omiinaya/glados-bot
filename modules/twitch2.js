@@ -78,8 +78,11 @@ function updateList(name, status) {
         var json = JSON.parse(data)
         var streamers = json.data
         streamers.forEach(streamer => {
-            if (name === streamer.name) {
+            if (name === streamer.name && streamer.status != status) {
                 streamer.status = status;
+                if (status == true) {
+                    discordAlert()
+                }
             }
         })
         var data = JSON.stringify(json)
@@ -90,6 +93,11 @@ function updateList(name, status) {
         })
         print(name+ ": " +status)
     })
+}
+
+function discordAlert() {
+    console.log("test")
+    //discord alerts channel
 }
 
 
