@@ -1,8 +1,6 @@
 require("dotenv").config()
 
 const Discord = require("discord.js");
-const fs = require("fs");
-const path = require("path");
 const i18n = require("i18n");
 
 const client = new Discord.Client({
@@ -11,20 +9,21 @@ const client = new Discord.Client({
   partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
 });
 
-const { config, emojis, roles, music, twitch } = require('./config')
+const { config, emojis, roles } = require('./config')
+
 const PREFIX   = config.prefix
 const LOCALE   = config.locale
-const TOKEN = process.env.BOT_TOKEN
+const TOKEN    = process.env.BOT_TOKEN
 
-const startRolesModule = require('./modules/roles')
-const startMusicModule = require('./modules/music')
+const { startRolesModule }  = require('./modules/roles')
+const { startMusicModule }  = require('./modules/music')
 const { startTwitchModule } = require('./modules/twitch')
 
 client.login(TOKEN);
 
 client.on('ready', () => {
   startRolesModule(client, config, emojis, roles)
-  startMusicModule(client, fs, path, Discord, music, i18n, PREFIX)
+  startMusicModule(client, PREFIX)
   startTwitchModule(client)
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "LISTENING" });
