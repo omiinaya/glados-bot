@@ -2,6 +2,7 @@ const { client, i18n, LOCALE } = require('../index')
 const fs = require('fs')
 const path = require('path')
 const axios = require('axios')
+const Discord = require('discord.js')
 const { config } = require('../config')
 
 const PREFIX = config.prefix
@@ -13,9 +14,9 @@ i18n.setLocale(LOCALE);
 
 var pth = path.join(__dirname, "../modules/channels.json")
 
-var add = {
+module.exports = {
     name: "twitch",
-    description: i18n.__('add.description'),
+    description: i18n.__('twitch.description'),
     execute(msg) {
         var args = msg.content.trim().split(/ +/g);
         if (msg.content.toLowerCase().startsWith(PREFIX + "twitch")) {
@@ -73,8 +74,26 @@ var add = {
                     }
                 })
             }
+            if (args[1] === 'list') {
+                fs.readFile(pth, "utf-8", function read(err, data) {
+                    var streamers = JSON.parse(data)
+                    var str = '\n'
+                    var count = 0
+                    streamers.forEach(streamer => {
+                        count++
+                        str += '\n'+ count + ". " + streamer.name
+                    })
+
+                    const Embed = new Discord.MessageEmbed()
+                        .setColor('#0099ff')
+                        .setTitle("Streamer list:")
+                        .setDescription(str)
+                        .setTimestamp()
+                        .setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
+
+                    msg.reply(Embed)
+                })
+            }
         }
     }
 }
-
-module.exports = add

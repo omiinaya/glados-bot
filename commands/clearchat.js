@@ -2,7 +2,7 @@ const { PREFIX, i18n, LOCALE } = require('../index')
 
 i18n.setLocale(LOCALE);
 
-var clearchat = {
+module.exports = {
     name: "clearchat",
     description: i18n.__('clearchat.description'),
     execute(msg) {
@@ -20,5 +20,3 @@ var clearchat = {
         }
     }
 }
-
-module.exports = clearchat

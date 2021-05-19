@@ -164,12 +164,9 @@
 		"errorCommend": "There was an error executing that command."
 	},
 	"clearchat": {
-		"description": "Clears last 100 messages on a channel (Admin Only)."
+		"description": "Clears last 100 messages on a channel."
 	},
-	"add": {
-		"description": "Enter channel name to add it to the alert list."
-	},
-	"list": {
-		"description": "List of streamers currently in the alert list."
+	"twitch": {
+		"description": "twitch add/remove 'name' to add/remove a streamer"
 	}
 }
