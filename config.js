@@ -1,7 +1,7 @@
 var config = {
     channel: '839716692501594152',
     message: '839717153141030932',
-    prefix: '/',
+    prefix: '.',
     locale: "en",
 }
 
