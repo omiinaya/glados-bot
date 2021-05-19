@@ -5,7 +5,7 @@ const scdl = require("soundcloud-downloader").default
 const https = require("https");
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
-const { config } = require('../config')
+const { config, music } = require('../config')
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
 const i18n = require("i18n");
 

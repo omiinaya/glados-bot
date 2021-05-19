@@ -104,7 +104,7 @@ function updateList(name, status, title, game, thumbnail) {
 function discordAlert(name, title, game, thumbnail) {
     const Embed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
-	.setTitle(name + "is now live on Twitch!")
+	.setTitle(name + " is now live on Twitch!")
 	.setURL('https://twitch.tv/'+name)
 	.setDescription(game)
 	.setThumbnail('https://i.imgur.com/OsnSOeR.png')
