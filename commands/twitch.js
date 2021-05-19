@@ -59,20 +59,24 @@ module.exports = {
                 })
             }
             if (args[1] === 'remove') {
-                fs.readFile(pth, "utf-8", function read(err, data) {
-                    var streamers = JSON.parse(data)
-                    if (streamers.some(streamer => streamer.name.toUpperCase() === args[2].toUpperCase())) {
-                        var streamers = streamers.filter(streamer => streamer.name.toUpperCase() !== args[2].toUpperCase())
-                        var data = JSON.stringify(streamers)
-                        fs.writeFile(pth, data, (error) => {
-                            console.log('updating file.')
-                            if (error) {
-                                console.log(error)
-                            }
-                        })
-                        msg.reply(args[2] + ' has been removed.')
-                    }
-                })
+                if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
+                    fs.readFile(pth, "utf-8", function read(err, data) {
+                        var streamers = JSON.parse(data)
+                        if (streamers.some(streamer => streamer.name.toUpperCase() === args[2].toUpperCase())) {
+                            var streamers = streamers.filter(streamer => streamer.name.toUpperCase() !== args[2].toUpperCase())
+                            var data = JSON.stringify(streamers)
+                            fs.writeFile(pth, data, (error) => {
+                                console.log('updating file.')
+                                if (error) {
+                                    console.log(error)
+                                }
+                            })
+                            msg.reply(args[2] + ' has been removed.')
+                        }
+                    })
+                } else {
+                    msg.reply('You are not authorized to use this command.')
+                }
             }
             if (args[1] === 'list') {
                 fs.readFile(pth, "utf-8", function read(err, data) {
@@ -81,7 +85,7 @@ module.exports = {
                     var count = 0
                     streamers.forEach(streamer => {
                         count++
-                        str += '\n'+ count + ". " + streamer.name
+                        str += '\n' + count + ". " + streamer.name
                     })
 
                     const Embed = new Discord.MessageEmbed()
