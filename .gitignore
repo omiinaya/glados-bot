@@ -1,3 +1,5 @@
 .env
 node_modules
 modules/channels.json
+/modules/channels.json
+./modules/channels.json
