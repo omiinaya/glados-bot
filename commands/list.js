@@ -12,8 +12,7 @@ var list = {
     execute(message) {
         if (message.content.toLowerCase().startsWith(PREFIX + "list")) {
             fs.readFile(pth, "utf-8", function read(err, data) {
-                var json = JSON.parse(data)
-                var streamers = json.data
+                var streamers = JSON.parse(data)
                 var str = '\n'
                 streamers.forEach(streamer => {
                     str+='\n'+streamer.name

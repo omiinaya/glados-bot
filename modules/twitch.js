@@ -53,8 +53,7 @@ function tick(interval) {
 
 function getList() {
     fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
-        var json = JSON.parse(data)
-        var streamers = json.data
+        var streamers = JSON.parse(data)
         streamers.forEach(streamer => {
             getStreamStatus(streamer.name)
         })
@@ -80,12 +79,11 @@ function getStreamStatus(input) {
 
 function updateList(name, status, title, game, thumbnail) {
     fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
-        var json = JSON.parse(data)
-        var streamers = json.data
+        var streamers = JSON.parse(data)
         streamers.forEach(streamer => {
             if (name === streamer.name && streamer.status != status) {
                 streamer.status = status;
-                var data = JSON.stringify(json)
+                var data = JSON.stringify(streamers)
                 fs.writeFile(__dirname + "/channels.json", data, (error) => {
                     console.log('updating file.')
                     if (error) {
