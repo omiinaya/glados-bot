@@ -28,6 +28,35 @@ function getList() {
             return res.data
         })
         .catch((err) => console.log(err));
-  }
+}
 
-module.exports = { leadingZero, print, getList }
+function addStreamer(name, status) {
+    return axios
+        .post("/api/streamers/add", {
+            name: name,
+            status: status
+        }).then(res => {
+            console.log(res + " has been added.")
+        })
+}
+
+function removeStreamer(name) {
+    return axios
+        .delete("/api/streamers/remove/" + name)
+        .then(res => {
+            console.log(res + " has been removed.")
+        })
+}
+
+function updateStreamer(name, status) {
+    console.log('test')
+    return axios
+        .put("/api/streamers/update/" + status, {
+            name: name
+        })
+        .then(res => {
+            console.log(res + " has been updated.")
+        })
+}
+
+module.exports = { leadingZero, print, getList, addStreamer, removeStreamer, updateStreamer }

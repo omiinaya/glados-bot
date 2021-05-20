@@ -1,9 +1,9 @@
 //dependencies
 const axios = require('axios')
 const Discord = require('discord.js');
-const fs = require('fs')
 const { print } = require('../scripts')
 const { twitch } = require('../config')
+const { getList, updateStreamer } = require('../scripts')
 
 //environment variables
 const twitchClientID = process.env.TWITCH_CLIENT_ID
@@ -20,7 +20,7 @@ function startTwitchModule(client) {
 function tick(interval) {
     //var x = 0
     const tock = setInterval(function () {
-        getList()
+        x()
         console.log('-----------------------------------')
         /*
         print(x + 1)
@@ -32,9 +32,8 @@ function tick(interval) {
     }, interval * 1000);
 }
 
-function getList() {
-    fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
-        var streamers = JSON.parse(data)
+function x() {
+    getList().then(streamers => {
         streamers.forEach(streamer => {
             getStreamStatus(streamer.name)
         })
@@ -59,40 +58,39 @@ function getStreamStatus(input) {
 }
 
 function updateList(name, status, title, game, thumbnail) {
-    fs.readFile(__dirname + "/channels.json", "utf-8", function read(err, data) {
-        var streamers = JSON.parse(data)
+    getList().then(streamers => {
         streamers.forEach(streamer => {
-            if (name === streamer.name && streamer.status != status) {
-                streamer.status = status;
-                var data = JSON.stringify(streamers)
-                fs.writeFile(__dirname + "/channels.json", data, (error) => {
-                    console.log('updating file.')
-                    if (error) {
-                        console.log(error)
-                    }
-                })
+            if (streamer.status == 0) {
+                currStatus = false
+            } else {
+                currStatus = true;
+            }
+            if (name === streamer.name && currStatus !== status) {
+                updateStreamer(name, status)
                 if (status == true) {
                     discordAlert(name, title, game, thumbnail)
                 }
             }
         })
-        print(name + ": " + status)
+        print(name + ": " + currStatus)
     })
+
+
 }
 
 function discordAlert(name, title, game, thumbnail) {
     const Embed = new Discord.MessageEmbed()
-	.setColor('#0099ff')
-	.setTitle(name + " is now live on Twitch!")
-	.setURL('https://twitch.tv/'+name)
-	.setDescription(game)
-	.setThumbnail('https://i.imgur.com/OsnSOeR.png')
-	.addFields(
-		{ name: title, value: '\u200B' }
-	)
-	.setImage(thumbnail)
-	.setTimestamp()
-	.setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
+        .setColor('#0099ff')
+        .setTitle(name + " is now live on Twitch!")
+        .setURL('https://twitch.tv/' + name)
+        .setDescription(game)
+        .setThumbnail('https://i.imgur.com/OsnSOeR.png')
+        .addFields(
+            { name: title, value: '\u200B' }
+        )
+        .setImage(thumbnail)
+        .setTimestamp()
+        .setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
 
     Client.channels.cache.get(twitch.channel).send(Embed);
 }

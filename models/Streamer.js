@@ -13,7 +13,7 @@ var Streamers = db.sequelize.define(
             type: Sequelize.STRING
         },
         status: {
-            type: Sequelize.STRING
+            type: Sequelize.BOOLEAN
         },
     },
     {
