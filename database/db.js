@@ -11,7 +11,7 @@ const sequelize = new Sequelize(database, username, password, {
     operatorAliases: false,
 
     pool: {
-        max: 15,   
+        max: 1,   
         min: 0,
         acquire: 30000,
         idle: 10000
