@@ -2,6 +2,7 @@
 const express = require("express")
 const cors = require("cors")
 const Streamer = require("../models/Streamer")
+const { config } = require('../config') 
 
 //vars
 const streamers = express.Router()
@@ -13,8 +14,8 @@ SECRET_KEY = process.env.SECRET_KEY
 
 //find all users
 streamers.get("/all", function (req, res) {
-    Streamer.findAll().then(user => {
-        res.json(user);
+    Streamer.findAll().then(streamer => {
+        res.json(streamer);
     });
 });
 

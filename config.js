@@ -3,6 +3,7 @@ var config = {
     message: '839717153141030932',
     prefix: '.',
     locale: "en",
+    baseURL: 'localhost:'+process.env.PORT
 }
 
 var emojis = {
