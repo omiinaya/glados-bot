@@ -17,7 +17,7 @@ function startRolesModule(client) {
         if (reaction.message.id == config.message) {
             console.log(reaction.emoji.id)
             for (const key in emojis) {
-                if (reaction.emoji.id === `${emojis[key]}`) {
+                if (reaction.emoji.id === `${emojis[key]}` || reaction.emoji.name === `${emojis[key]}`) {
                     var currentEmoji = `${key}`
                     await reaction.message.guild.members.cache.get(user.id).roles[action](roles[currentEmoji]);
                 }

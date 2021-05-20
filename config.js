@@ -23,7 +23,8 @@ var emojis = {
     twitch:    '840024315545911316',
     youtube:   '840621841169383494',
     //
-    ayaya:     '844651079828373574'
+    ayaya:     '844651079828373574',
+    '🍆':       '🍆'
 }
 
 var roles = {
@@ -43,12 +44,13 @@ var roles = {
     twitch:    '838033694337662986',
     youtube:   '841544614170722334',
     //
-    ayaya:     '841754940959621180'
+    ayaya:     '841754940959621180',
+    '🍆':      '844784768256049162'
 }
 
 var twitch = {
     interval: 5,
-    apiUrl: "https://api.twitch.tv/kraken",
+    apiUrl: "https://api.twitch.tv/helix",
     timeout: 2*60*1000,
     channel: '839566399097667594'
 }
