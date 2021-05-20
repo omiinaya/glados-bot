@@ -1,7 +1,6 @@
 require("dotenv").config()
 
 const Discord = require("discord.js");
-const i18n = require("i18n");
 
 const client = new Discord.Client({
   disableMentions: "everyone",
@@ -9,10 +8,9 @@ const client = new Discord.Client({
   partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
 });
 
-const { config, emojis, roles } = require('./config')
+const { config } = require('./config')
 
 const PREFIX   = config.prefix
-const LOCALE   = config.locale
 const TOKEN    = process.env.BOT_TOKEN
 
 const { startRolesModule }  = require('./modules/roles')
@@ -22,11 +20,9 @@ const { startTwitchModule } = require('./modules/twitch')
 client.login(TOKEN);
 
 client.on('ready', () => {
-  startRolesModule(client, config, emojis, roles)
-  startMusicModule(client, PREFIX)
-  startTwitchModule(client)
+  startRolesModule()
+  startMusicModule()
+  startTwitchModule()
   console.log(`${client.user.username} ready!`);
-  client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "LISTENING" });
+  client.user.setActivity(`${PREFIX}help for command list.`, { type: "LISTENING" });
 });
-
-module.exports = { client, PREFIX, i18n, LOCALE }

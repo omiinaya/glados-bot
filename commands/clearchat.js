@@ -1,4 +1,7 @@
-const { PREFIX, i18n, LOCALE } = require('../index')
+const { config } = require('../config')
+const PREFIX = config.prefix
+const LOCALE = config.locale
+const i18n = require("i18n");
 
 i18n.setLocale(LOCALE);
 

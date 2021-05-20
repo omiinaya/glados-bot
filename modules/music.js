@@ -3,7 +3,17 @@ const fs = require('fs')
 const path = require('path')
 const i18n = require('i18n')
 
-function startMusicModule(client, PREFIX) {
+const client = new Discord.Client({
+    disableMentions: "everyone",
+    restTimeOffset: 0,
+    partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
+});
+
+const { config } = require('../config')
+
+const PREFIX = config.prefix
+
+function startMusicModule() {
     console.log("Music module initialized.");
 
     client.commands = new Discord.Collection();

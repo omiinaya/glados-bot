@@ -1,11 +1,11 @@
-const { client, i18n, LOCALE } = require('../index')
 const fs = require('fs')
 const path = require('path')
 const axios = require('axios')
 const Discord = require('discord.js')
 const { config } = require('../config')
-
 const PREFIX = config.prefix
+const LOCALE = config.locale
+const i18n = require("i18n");
 
 const twitchClientID = process.env.TWITCH_CLIENT_ID
 const twitchOAuthID = process.env.TWITCH_OAUTH_ID

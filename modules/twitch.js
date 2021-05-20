@@ -2,7 +2,14 @@
 const axios = require('axios')
 const Discord = require('discord.js');
 const fs = require('fs')
+const { print } = require('../scripts')
 const { twitch } = require('../config')
+
+const client = new Discord.Client({
+    disableMentions: "everyone",
+    restTimeOffset: 0,
+    partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
+});
 
 //environment variables
 const twitchClientID = process.env.TWITCH_CLIENT_ID
@@ -10,30 +17,10 @@ const twitchOAuthID = process.env.TWITCH_OAUTH_ID
 
 let Client;
 
-function startTwitchModule(client) {
+function startTwitchModule() {
     console.log("Twitch module initialized.")
     Client = client
     tick(twitch.interval)
-}
-
-function leadingZero(d) {
-    if (d < 10) {
-        return "0" + d;
-    } else {
-        return d;
-    }
-}
-
-function print(msg, err) {
-    var date = new Date();
-    var h = leadingZero(date.getHours());
-    var m = leadingZero(date.getMinutes());
-    var s = leadingZero(date.getSeconds());
-
-    console.log("[" + h + ":" + m + ":" + s + "]", msg);
-    if (err) {
-        console.log(err);
-    }
 }
 
 function tick(interval) {
