@@ -20,7 +20,6 @@ module.exports = {
     description: i18n.__('roll.description'),
     execute(msg) {
         var args = msg.content.trim().split(/ +/g);
-        console.log(args[0] + " : " +  args[1] + " : " + args[2])
         if (msg.content.toLowerCase().startsWith(PREFIX + "roll")) {
             if (args.length > 1) {
                 msg.reply(roll2(args[1], args[2]))

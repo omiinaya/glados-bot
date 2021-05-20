@@ -21,9 +21,7 @@ module.exports = {
         var args = msg.content.trim().split(/ +/g);
         if (msg.content.toLowerCase().startsWith(PREFIX + "twitch")) {
             getList().then(res => {
-                console.log(res[0])
             })
-            console.log(args)
             if (args[1] === 'add') {
                 var url = "https://api.twitch.tv/helix/users?login=" + args[2]
                 axios.get(url, {
@@ -63,7 +61,6 @@ module.exports = {
             }
             if (args[1] === 'list') {
                 getList().then(res => {
-                    //console.log(res)
                     var count = 0;
                     var str = '';
                     res.forEach(streamer => {
