@@ -1,8 +1,8 @@
 const path = require('path')
 const axios = require('axios')
 const Discord = require('discord.js')
-const { config } = require('../config')
-const apiURL = config.apiUrl
+const { config, twitch } = require('../config')
+const APIURL = twitch.apiUrl
 const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
@@ -20,7 +20,7 @@ module.exports = {
         var args = msg.content.trim().split(/ +/g);
         if (msg.content.toLowerCase().startsWith(PREFIX + "twitch")) {
             if (args[1] === 'add') {
-                var url = apiUrl+ "/users?login=" + args[2]
+                var url = APIURL + "/users?login=" + args[2]
                 axios.get(url, {
                     headers: {
                         'Client-ID': twitchClientID,

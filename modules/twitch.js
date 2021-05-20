@@ -3,6 +3,7 @@ const axios = require('axios')
 const Discord = require('discord.js');
 const { print } = require('../scripts')
 const { twitch } = require('../config')
+const APIURL = twitch.apiUrl
 const { getList, updateStreamer } = require('../scripts')
 
 //environment variables
@@ -41,7 +42,7 @@ function x() {
 }
 
 function getStreamStatus(input) {
-    var url = "https://api.twitch.tv/helix/search/channels?query=" + input
+    var url = APIURL + "/search/channels?query=" + input
     axios.get(url, {
         headers: {
             'Client-ID': twitchClientID,

@@ -2,7 +2,6 @@
 const express = require("express")
 const cors = require("cors")
 const Streamer = require("../models/Streamer")
-const { config } = require('../config')
 
 //vars
 const streamers = express.Router()
