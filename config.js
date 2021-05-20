@@ -49,8 +49,10 @@ var roles = {
 }
 
 var twitch = {
-    interval: 10,
+    interval: 300,
+    cooldown: 10*1000,
     apiUrl: "https://api.twitch.tv/helix",
+    url: "https://twitch.tv/",
     timeout: 2*60*1000,
     channel: '839566399097667594'
 }
@@ -63,14 +65,4 @@ var music = {
     default_volume: "30"
 }
 
-function canModifyQueue(member) {
-    const { channelID } = member.voice;
-    const botChannel = member.guild.voice.channelID;
-
-    if (channelID !== botChannel) {
-        return;
-    }
-    return true;
-}
-
-module.exports = { config, emojis, roles, music, twitch, canModifyQueue }
+module.exports = { config, emojis, roles, music, twitch }

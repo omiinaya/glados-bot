@@ -15,37 +15,24 @@ let Client;
 function startTwitchModule(client) {
     console.log("Twitch module initialized.")
     Client = client
-    tick(twitch.interval)
+    tick(twitch.cooldown)
 }
 
-function tick(interval) {
-    //var x = 0
-    const tock = setInterval(function () {
-        x()
-        console.log('-----------------------------------')
-        /*
-        print(x + 1)
-        x++;
-        if (x >= 5) {
-            clearInterval(tock);
-        }
-        */
-    }, interval * 1000);
-}
-
-function x() {
-    getList().then(streamers => {
-        var interval = 300; // how much time should the delay between two iterations be (in milliseconds)?
-        var promise = Promise.resolve();
-        streamers.forEach(streamer => {
-            promise = promise.then(function () {
-            getStreamStatus(streamer.name)
-            return new Promise(function (resolve) {
-                setTimeout(resolve, interval);
-              });
-            });
+function tick(cooldown) {
+    setInterval(function () {
+        getList().then(streamers => {
+            var promise = Promise.resolve();
+            streamers.forEach(streamer => {
+                promise = promise.then(function () {
+                    getStreamStatus(streamer.name)
+                    return new Promise(function (resolve) {
+                        setTimeout(resolve, twitch.interval);
+                    });
+                });
+            })
         })
-    })
+        console.log('------------------------------------------------')
+    }, cooldown);
 }
 
 function getStreamStatus(input) {
@@ -77,14 +64,14 @@ function updateList(name, status, title, game, thumbnail) {
         })
         print(name + " : " + status)
     })
-    
+
 }
 
 function discordAlert(name, title, game, thumbnail) {
     const Embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(name + " is now live on Twitch!")
-        .setURL('https://twitch.tv/' + name)
+        .setURL(twitch.url + name)
         .setDescription(game)
         .setThumbnail('https://i.imgur.com/OsnSOeR.png')
         .addFields(

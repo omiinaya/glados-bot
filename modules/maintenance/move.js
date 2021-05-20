@@ -1,5 +1,6 @@
 const move = require("array-move");
-const { config, canModifyQueue } = require('../config')
+const { config } = require('../config')
+const { canModifyQueue } = require('../scripts')
 const i18n = require("i18n");
 
 i18n.setLocale(config.locale);

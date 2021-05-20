@@ -1,5 +1,15 @@
 const axios = require('axios')
 
+function canModifyQueue(member) {
+    const { channelID } = member.voice;
+    const botChannel = member.guild.voice.channelID;
+
+    if (channelID !== botChannel) {
+        return;
+    }
+    return true;
+}
+
 function leadingZero(d) {
     if (d < 10) {
         return "0" + d;
@@ -59,4 +69,12 @@ function updateStreamer(name, status) {
         })
 }
 
-module.exports = { leadingZero, print, getList, addStreamer, removeStreamer, updateStreamer }
+module.exports = {
+    leadingZero,
+    print,
+    getList,
+    addStreamer,
+    removeStreamer,
+    updateStreamer,
+    canModifyQueue
+}
