@@ -167,6 +167,9 @@
 		"description": "Clears last 100 messages on a channel."
 	},
 	"twitch": {
-		"description": "twitch add/remove 'name' to add/remove a streamer"
+		"description": "Ex. .twitch add [channel]"
+	},
+	"roll": {
+		"description": "roll from 0 to 100 or provide a range."
 	}
 }

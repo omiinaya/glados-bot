@@ -1,8 +1,7 @@
 require("dotenv").config()
 const express = require('express')
-var bodyParser = require("body-parser")
+const bodyParser = require("body-parser")
 const app = express()
-const path = require('path')
 const port = process.env.PORT
 const cors = require("cors")
 const Streamers = require('./routes/Streamers')
@@ -12,7 +11,6 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/api/streamers/', Streamers)
-axios.defaults.baseURL = 'http://localhost:'+process.env.PORT;
 
 app.listen(port, () => {
   console.log("Server is running on port: " + port + "!")
@@ -23,7 +21,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
   disableMentions: "everyone",
   restTimeOffset: 0,
-  partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
+  partials: ['MESSAGE', 'REACTION', 'CHANNEL']
 });
 
 const { config } = require('./config')
@@ -42,5 +40,7 @@ client.on('ready', () => {
   startMusicModule(client)
   startTwitchModule(client)
   console.log(`${client.user.username} ready!`);
-  client.user.setActivity(`${PREFIX}help for command list.`, { type: "LISTENING" });
+  client.user.setActivity(`${PREFIX}help for commands`, { type: "LISTENING" });
 });
+
+axios.defaults.baseURL = 'http://localhost:'+process.env.PORT;
