@@ -49,7 +49,7 @@ var roles = {
 }
 
 var twitch = {
-    interval: 5,
+    interval: 10,
     apiUrl: "https://api.twitch.tv/helix",
     timeout: 2*60*1000,
     channel: '839566399097667594'

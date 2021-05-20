@@ -35,8 +35,15 @@ function tick(interval) {
 
 function x() {
     getList().then(streamers => {
+        var interval = 300; // how much time should the delay between two iterations be (in milliseconds)?
+        var promise = Promise.resolve();
         streamers.forEach(streamer => {
+            promise = promise.then(function () {
             getStreamStatus(streamer.name)
+            return new Promise(function (resolve) {
+                setTimeout(resolve, interval);
+              });
+            });
         })
     })
 }
@@ -61,22 +68,16 @@ function getStreamStatus(input) {
 function updateList(name, status, title, game, thumbnail) {
     getList().then(streamers => {
         streamers.forEach(streamer => {
-            if (streamer.status == 0) {
-                currStatus = false
-            } else {
-                currStatus = true;
-            }
-            if (name === streamer.name && currStatus !== status) {
+            if (streamer.name === name && streamer.status !== status) {
                 updateStreamer(name, status)
                 if (status == true) {
                     discordAlert(name, title, game, thumbnail)
                 }
             }
         })
-        print(name + ": " + currStatus)
+        print(name + " : " + status)
     })
-
-
+    
 }
 
 function discordAlert(name, title, game, thumbnail) {
