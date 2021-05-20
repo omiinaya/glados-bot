@@ -6,6 +6,7 @@ const { config } = require('../config')
 const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
+const { getList } = require('../scripts')
 
 const twitchClientID = process.env.TWITCH_CLIENT_ID
 const twitchOAuthID = process.env.TWITCH_OAUTH_ID
@@ -20,8 +21,10 @@ module.exports = {
     execute(msg) {
         var args = msg.content.trim().split(/ +/g);
         if (msg.content.toLowerCase().startsWith(PREFIX + "twitch")) {
+            getList().then(res => {
+                console.log(res[0])
+            })
             console.log(args)
-            getList()
             if (args[1] === 'add') {
                 var url = "https://api.twitch.tv/helix/users?login=" + args[2]
                 axios.get(url, {
@@ -80,11 +83,11 @@ module.exports = {
                 }
             }
             if (args[1] === 'list') {
-                fs.readFile(pth, "utf-8", function read(err, data) {
-                    var streamers = JSON.parse(data)
-                    var str = '\n'
-                    var count = 0
-                    streamers.forEach(streamer => {
+                getList().then(res => {
+                    //console.log(res)
+                    var count = 0;
+                    var str = '';
+                    res.forEach(streamer => {
                         count++
                         str += '\n' + count + ". " + streamer.name
                     })

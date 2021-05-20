@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 function leadingZero(d) {
     if (d < 10) {
         return "0" + d;
@@ -18,4 +20,14 @@ function print(msg, err) {
     }
 }
 
-module.exports = { leadingZero, print }
+function getList() {
+    return axios
+        .get("/api/streamers/all")
+        .then((res) => {
+            //console.log(res.data);
+            return res.data
+        })
+        .catch((err) => console.log(err));
+  }
+
+module.exports = { leadingZero, print, getList }

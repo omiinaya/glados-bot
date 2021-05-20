@@ -11,25 +11,9 @@ app.use(cors())
 app.use('/api/streamers/', Streamers)
 axios.defaults.baseURL = 'http://localhost:'+process.env.PORT;
 
-function getList() {
-    
-  axios.get("/api/streamers/all")
-      .then((res) => {
-          console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-}
-
-
 app.listen(port, () => {
   console.log("Server is running on port: " + port + "!")
-  getList()
 })
-
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'index.html'));
-});
-
 
 const Discord = require("discord.js");
 
