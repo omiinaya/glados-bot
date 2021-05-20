@@ -1,13 +1,6 @@
-const Discord = require("discord.js");
 const { config, emojis, roles } = require('../config')
 
-const client = new Discord.Client({
-    disableMentions: "everyone",
-    restTimeOffset: 0,
-    partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
-});
-
-function startRolesModule() {
+function startRolesModule(client) {
     client.on('messageReactionAdd', (reaction, user) => {
         toggleRole(reaction, user, 'add')
     });

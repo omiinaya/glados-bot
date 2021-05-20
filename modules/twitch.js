@@ -5,19 +5,13 @@ const fs = require('fs')
 const { print } = require('../scripts')
 const { twitch } = require('../config')
 
-const client = new Discord.Client({
-    disableMentions: "everyone",
-    restTimeOffset: 0,
-    partials: ['MESSAGE', 'REACTION', 'CHANNEL'],
-});
-
 //environment variables
 const twitchClientID = process.env.TWITCH_CLIENT_ID
 const twitchOAuthID = process.env.TWITCH_OAUTH_ID
 
 let Client;
 
-function startTwitchModule() {
+function startTwitchModule(client) {
     console.log("Twitch module initialized.")
     Client = client
     tick(twitch.interval)

@@ -20,9 +20,9 @@ const { startTwitchModule } = require('./modules/twitch')
 client.login(TOKEN);
 
 client.on('ready', () => {
-  startRolesModule()
-  startMusicModule()
-  startTwitchModule()
+  startRolesModule(client)
+  startMusicModule(client)
+  startTwitchModule(client)
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help for command list.`, { type: "LISTENING" });
 });
