@@ -5,7 +5,6 @@ const { print } = require('../scripts')
 const { config, twitch, channels } = require('../config')
 const { getList, updateStreamer } = require('../scripts')
 const APIURL = twitch.apiUrl
-const BASEURL = config.baseURL
 
 //environment variables
 const twitchClientID = process.env.TWITCH_CLIENT_ID
