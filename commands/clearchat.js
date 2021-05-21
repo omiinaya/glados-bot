@@ -10,6 +10,7 @@ module.exports = {
     description: i18n.__('clearchat.description'),
     execute(msg) {
         if (msg.content.toLowerCase().startsWith(PREFIX + "clearchat")) {
+            var args = msg.content.trim().split(/ +/g);
             if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
                 async function clear() {
                     msg.delete();
