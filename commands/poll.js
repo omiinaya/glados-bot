@@ -13,6 +13,7 @@ module.exports = {
     execute(msg) {
         var args = splitargs(msg.content)
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
+            console.log(args)
             msg.reply('This command is not ready yet.')
             if (args.length > 2 && args.length < 12) {
                 var str = ''
