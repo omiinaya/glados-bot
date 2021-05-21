@@ -5,7 +5,6 @@ const app = express()
 const port = process.env.PORT
 const cors = require("cors")
 const Streamers = require('./routes/Streamers')
-const axios = require('axios')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -42,5 +41,3 @@ client.on('ready', () => {
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help for commands`, { type: "LISTENING" });
 });
-
-axios.defaults.baseURL = 'http://localhost:'+process.env.PORT;

@@ -1,11 +1,15 @@
 var config = {
-    channel: '839716692501594152',
     message: '839717153141030932',
     prefix: '.',
     locale: "en",
-    logs: '838830641910775838',
-    test: '841691435232788530',
-    baseURL: 'localhost:'+process.env.PORT
+    baseURL: 'http://localhost:'+process.env.PORT
+}
+
+var channels = {
+    roles:   '839716692501594152',
+    logs:    '838830641910775838',
+    test:    '841691435232788530',
+    twitch:  '839566399097667594'
 }
 
 var emojis = {
@@ -55,6 +59,11 @@ var roles = {
 
 }
 
+var private = [
+    '🛠️',
+    '💻'
+]
+
 var twitch = {
     interval: 300,
     cooldown: 10*1000,
@@ -72,4 +81,4 @@ var music = {
     default_volume: "30"
 }
 
-module.exports = { config, emojis, roles, music, twitch }
+module.exports = { config, emojis, roles, music, twitch, private, channels }

@@ -1,4 +1,6 @@
 const axios = require('axios')
+const { config } = require('./config')
+const BASEURL = config.baseURL
 
 function canModifyQueue(member) {
     const { channelID } = member.voice;
@@ -32,9 +34,8 @@ function print(msg, err) {
 
 function getList() {
     return axios
-        .get("/api/streamers/all")
+        .get(BASEURL + "/api/streamers/all")
         .then((res) => {
-            //console.log(res.data);
             return res.data
         })
         .catch((err) => console.log(err));
@@ -42,7 +43,7 @@ function getList() {
 
 function addStreamer(name, status) {
     return axios
-        .post("/api/streamers/add", {
+        .post(BASEURL + "/api/streamers/add", {
             name: name,
             status: status
         }).then(res => {
@@ -52,7 +53,7 @@ function addStreamer(name, status) {
 
 function removeStreamer(name) {
     return axios
-        .delete("/api/streamers/remove/" + name)
+        .delete(BASEURL + "/api/streamers/remove/" + name)
         .then(res => {
             console.log(res + " has been removed.")
         })
@@ -61,7 +62,7 @@ function removeStreamer(name) {
 function updateStreamer(name, status) {
     console.log('test')
     return axios
-        .put("/api/streamers/update/" + status, {
+        .put(BASEURL + "/api/streamers/update/" + status, {
             name: name
         })
         .then(res => {

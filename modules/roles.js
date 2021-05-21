@@ -1,4 +1,4 @@
-const { config, emojis, roles } = require('../config')
+const { config, emojis, roles, private, channels } = require('../config')
 
 function startRolesModule(client) {
     client.on('messageReactionAdd', (reaction, user) => {
@@ -18,13 +18,14 @@ function startRolesModule(client) {
             console.log(reaction.emoji.id)
             for (const key in emojis) {
                 if (reaction.emoji.id === `${emojis[key]}` || reaction.emoji.name === `${emojis[key]}`) {
-                    if ((reaction.emoji.name === '🛠️' || reaction.emoji.name === '💻') && !reaction.message.member.roles.cache.some(role => role.name === 'Origin')) {
-                        client.channels.cache.get(config.logs).send('<@'+reaction.message.member.user.id+'>, you are not an Origin employee.');
-                        return
-                    } else {
+                    private.forEach(role => {
+                        if (reaction.emoji.name === role && !reaction.message.member.roles.cache.some(role => role.name === 'Origin')) {
+                            client.channels.cache.get(channels.logs).send('<@' + reaction.message.member.user.id + '>, you are not an Origin employee.');
+                            return
+                        }
+                    })
                     var currentEmoji = `${key}`
                     await reaction.message.guild.members.cache.get(user.id).roles[action](roles[currentEmoji]);
-                    }
                 }
             }
         } else return;

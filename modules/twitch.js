@@ -2,9 +2,10 @@
 const axios = require('axios')
 const Discord = require('discord.js');
 const { print } = require('../scripts')
-const { twitch } = require('../config')
-const APIURL = twitch.apiUrl
+const { config, twitch, channels } = require('../config')
 const { getList, updateStreamer } = require('../scripts')
+const APIURL = twitch.apiUrl
+const BASEURL = config.baseURL
 
 //environment variables
 const twitchClientID = process.env.TWITCH_CLIENT_ID
@@ -81,7 +82,7 @@ function discordAlert(name, title, game, thumbnail) {
         .setTimestamp()
         .setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
 
-    Client.channels.cache.get(twitch.channel).send(Embed);
+    Client.channels.cache.get(channels.twitch).send(Embed);
 }
 
 module.exports = { startTwitchModule }
