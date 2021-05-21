@@ -2,7 +2,7 @@
 const axios = require('axios')
 const Discord = require('discord.js');
 const { print } = require('../scripts')
-const { config, twitch, channels } = require('../config')
+const { twitch, channels, embed } = require('../config')
 const { getList, updateStreamer } = require('../scripts')
 const APIURL = twitch.apiUrl
 
@@ -68,20 +68,20 @@ function updateList(name, status, title, game, thumbnail) {
 }
 
 function discordAlert(name, title, game, thumbnail) {
-    const Embed = new Discord.MessageEmbed()
+    const twitchEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(name + " is now live on Twitch!")
         .setURL(twitch.url + name)
         .setDescription(game)
-        .setThumbnail('https://i.imgur.com/OsnSOeR.png')
+        .setThumbnail(embed.thumbnail)
         .addFields(
             { name: title, value: '\u200B' }
         )
         .setImage(thumbnail)
         .setTimestamp()
-        .setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
+        .setFooter(embed.footer, embed.glados);
 
-    Client.channels.cache.get(channels.twitch).send(Embed);
+    Client.channels.cache.get(channels.twitch).send(twitchEmbed);
 }
 
 module.exports = { startTwitchModule }

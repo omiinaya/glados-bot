@@ -94,4 +94,15 @@ var music = {
     default_volume: "30"
 }
 
-module.exports = { config, emojis, roles, music, twitch, private, channels, numbers }
+var bars = {
+    '1':'█',
+    '2':'⬤',
+}
+
+var embed = {
+    footer: 'Brough to you by .nf',
+    thumbnail: 'https://i.imgur.com/hXQLQJv.jpg',
+    glados: 'https://i.imgur.com/OsnSOeR.png'
+}
+
+module.exports = { config, emojis, roles, music, twitch, private, channels, numbers, bars, embed }

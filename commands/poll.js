@@ -1,9 +1,10 @@
-const { config, numbers } = require('../config')
+const { config, numbers, bars, embed } = require('../config')
 const Discord = require('discord.js')
 const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
 const splitargs = require('splitargs')
+const { getNumbers, test } = require('../scripts')
 
 i18n.setLocale(LOCALE);
 
@@ -22,13 +23,14 @@ module.exports = {
                     count++;
                     str += '\n' + count + ". " + args[i]
                 }
-                const Embed = new Discord.MessageEmbed()
+                const pollEmbed = new Discord.MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle(args[1])
                     .setDescription(str)
+                    .setThumbnail(embed.thumbnail)
                     .setTimestamp()
-                    .setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
-                msg.reply(Embed).then(embedMessage => {
+                    .setFooter(embed.footer, embed.glados);
+                msg.reply(pollEmbed).then(embedMessage => {
                     var lines = str.split(/\r\n|\r|\n/)
                     lines.forEach(line => {
                         for (const key in numbers) {
@@ -37,6 +39,15 @@ module.exports = {
                             }
                         }
                     })
+
+                    const filter = (reaction, user) => reaction.emoji.name === '1️⃣' && user.id === msg.author.id
+                    const collector = embedMessage.createReactionCollector(filter, { max: 0, time: 0 }); // 5 min
+
+                    collector.on('collect', () => {
+                        console.log(getNumbers())
+                        console.log(test('1'))
+                    })
+
                 })
             } else {
                 msg.reply('You need to provide a question, at least 2 options and at most 9.')

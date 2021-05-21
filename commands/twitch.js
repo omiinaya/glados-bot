@@ -1,6 +1,6 @@
 const axios = require('axios')
 const Discord = require('discord.js')
-const { config, twitch } = require('../config')
+const { config, twitch, embed } = require('../config')
 const APIURL = twitch.apiUrl
 const PREFIX = config.prefix
 const LOCALE = config.locale
@@ -64,13 +64,13 @@ module.exports = {
                         str += '\n' + count + ". " + streamer.name
                     })
 
-                    const Embed = new Discord.MessageEmbed()
+                    const twitchEmbed = new Discord.MessageEmbed()
                         .setColor('#0099ff')
                         .setTitle("Streamer list:")
                         .setDescription(str)
                         .setTimestamp()
-                        .setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
-                    msg.reply(Embed)
+                        .setFooter(embed.footer, embed.thumbnail);
+                    msg.reply(twitchEmbed)
                 })
             }
         }

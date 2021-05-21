@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { config } = require('./config')
+const { config, numbers } = require('./config')
 const BASEURL = config.baseURL
 
 function canModifyQueue(member) {
@@ -69,6 +69,21 @@ function updateStreamer(name, status) {
         })
 }
 
+function getNumbers() {
+    var x = []
+    for (const key in numbers) {
+        x.push(key)
+    }
+    return x
+}
+
+var y = [1, 2, 3]
+
+function test(a) {
+    var x = ([a].indexOf(y) !== -1)
+    return x
+}
+
 module.exports = {
     leadingZero,
     print,
@@ -76,5 +91,7 @@ module.exports = {
     addStreamer,
     removeStreamer,
     updateStreamer,
-    canModifyQueue
+    canModifyQueue,
+    getNumbers,
+    test
 }
