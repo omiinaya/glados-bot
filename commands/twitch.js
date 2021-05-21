@@ -1,4 +1,3 @@
-const path = require('path')
 const axios = require('axios')
 const Discord = require('discord.js')
 const { config, twitch } = require('../config')
@@ -71,7 +70,6 @@ module.exports = {
                         .setDescription(str)
                         .setTimestamp()
                         .setFooter('Brought to you by GLaDOS', 'https://i.imgur.com/OsnSOeR.png');
-
                     msg.reply(Embed)
                 })
             }

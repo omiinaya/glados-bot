@@ -60,7 +60,6 @@ function removeStreamer(name) {
 }
 
 function updateStreamer(name, status) {
-    console.log('test')
     return axios
         .put(BASEURL + "/api/streamers/update/" + status, {
             name: name

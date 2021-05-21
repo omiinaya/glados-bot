@@ -167,9 +167,12 @@
 		"description": "Clears last 100 messages on a channel."
 	},
 	"twitch": {
-		"description": "Ex. .twitch add [channel]"
+		"description": "Ex. .twitch add channel"
 	},
 	"roll": {
-		"description": "roll from 0 to 100 or provide a range."
+		"description": "Ex. .roll or provide a range like so .roll 0 100"
+	},
+	"poll": {
+		"description": "Ex. .poll question ans1 ans2 ans3"
 	}
 }

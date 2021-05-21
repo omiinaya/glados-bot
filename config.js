@@ -59,6 +59,18 @@ var roles = {
 
 }
 
+var numbers = {
+    '1️⃣': '1',
+    '2️⃣': '2',
+    '3️⃣': '3',
+    '4️⃣': '4',
+    '5️⃣': '5',
+    '6️⃣': '6',
+    '7️⃣': '7',
+    '8️⃣': '8',
+    '9️⃣': '9'
+}
+
 var private = [
     '🛠️',
     '💻',
@@ -82,4 +94,4 @@ var music = {
     default_volume: "30"
 }
 
-module.exports = { config, emojis, roles, music, twitch, private, channels }
+module.exports = { config, emojis, roles, music, twitch, private, channels, numbers }

@@ -45,7 +45,7 @@ function getStreamStatus(input) {
     }).then(res => {
         var streamers = res.data.data
         streamers.forEach((streamer) => {
-            if (streamer.display_name == input) {
+            if (streamer.display_name.toUpperCase() == input.toUpperCase()) {
                 updateList(streamer.display_name, streamer.is_live, streamer.title, streamer.game_name, streamer.thumbnail_url)
             }
         })
@@ -55,7 +55,7 @@ function getStreamStatus(input) {
 function updateList(name, status, title, game, thumbnail) {
     getList().then(streamers => {
         streamers.forEach(streamer => {
-            if (streamer.name === name && streamer.status !== status) {
+            if (streamer.name.toUpperCase() === name.toUpperCase() && streamer.status !== status) {
                 updateStreamer(name, status)
                 if (status == true) {
                     discordAlert(name, title, game, thumbnail)
