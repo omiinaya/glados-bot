@@ -3,6 +3,7 @@ const Discord = require('discord.js')
 const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
+const splitargs = require('splitargs')
 
 i18n.setLocale(LOCALE);
 
