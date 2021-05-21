@@ -12,15 +12,32 @@ module.exports = {
         if (msg.content.toLowerCase().startsWith(PREFIX + "clearchat")) {
             var args = msg.content.trim().split(/ +/g);
             if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
-                async function clear() {
-                    msg.delete();
-                    const fetched = await msg.channel.messages.fetch({ limit: 99 });
-                    msg.channel.bulkDelete(fetched);
+                if (args.length > 1) {
+                    clearchat2(msg, args[1])
+                } else {
+                    clearchat(msg)
                 }
-                clear();
             } else {
                 msg.channel.send('You are not authorized to use this command.')
             }
         }
     }
+}
+
+function clearchat(msg) {
+    async function clear() {
+        msg.delete();
+        const fetched = await msg.channel.messages.fetch({ limit: 99 });
+        msg.channel.bulkDelete(fetched);
+    }
+    clear();
+}
+
+function clearchat2(msg, quantity) {
+    async function clear() {
+        msg.delete();
+        const fetched = await msg.channel.messages.fetch({ limit: quantity+1 });
+        msg.channel.bulkDelete(fetched);
+    }
+    clear();
 }
