@@ -1,6 +1,6 @@
 const ytdl = require("ytdl-core-discord");
 const scdl = require("soundcloud-downloader").default;
-const { config } = require('../config')
+const { config, music } = require('../config')
 const { canModifyQueue } = require('../scripts')
 const i18n = require("i18n");
 i18n.setLocale(config.locale);
