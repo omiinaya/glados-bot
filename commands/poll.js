@@ -11,7 +11,7 @@ module.exports = {
     description: i18n.__('poll.description'),
     execute(msg) {
         var myMsg = msg.content
-        var args = myMsg.match(/\S+|"[^"]+"/g)
+        var args = myMsg.match(/[^\s"]+|"([^"]*)"/gi)
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
             msg.reply('This command is not ready yet.')
             if (args.length > 2 && args.length < 12) {
