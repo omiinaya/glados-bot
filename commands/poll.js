@@ -14,6 +14,7 @@ module.exports = {
         var myRegexp = /[^\s"]+|"([^"]*)"/gi;
         var args = myRegexp.exec(myMsg)
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
+            console.log(args)
             msg.reply('This command is not ready yet.')
             if (args.length > 2 && args.length < 12) {
                 var str = ''
