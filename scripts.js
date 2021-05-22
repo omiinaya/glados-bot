@@ -103,7 +103,7 @@ function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions
 }
 
 function progressBar(value, total) {
-   var x = ((value/total) * 100) / 2.5
+   var x = ((value/total) * 100) / 2.8
    var y = bars['1']
    var z = y.repeat(x)
    return z
