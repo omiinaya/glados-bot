@@ -91,15 +91,13 @@ function removeReactions(embedMessage, msg) {
         .setColor('#0099ff')
         .setTitle('Results: ')
         .setDescription(str)
-        .setThumbnail(embed.thumbnail)
+        .setThumbnail(embed.glados)
         .setTimestamp()
-        .setFooter(embed.footer, embed.glados);
+        .setFooter(embed.footer, embed.thumbnail);
     msg.reply(resultEmbed)
     console.log(str)
     console.log(realTotal)
     embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
-
-
 
     console.log('timesup')
 }

@@ -91,7 +91,7 @@ function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions
     var tick = timer
     var tock = setInterval(() => {
         tick = tick - 1200
-        embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.glados))
+        embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.thumbnail))
         if (tick < 1) {
             clearInterval(tock);
             removeReactions(embedMessage, msg, timer)

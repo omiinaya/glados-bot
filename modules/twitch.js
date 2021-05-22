@@ -73,13 +73,13 @@ function discordAlert(name, title, game, thumbnail) {
         .setTitle(name + " is now live on Twitch!")
         .setURL(twitch.url + name)
         .setDescription(game)
-        .setThumbnail(embed.thumbnail)
+        .setThumbnail(embed.glados)
         .addFields(
             { name: title, value: '\u200B' }
         )
         .setImage(thumbnail)
         .setTimestamp()
-        .setFooter(embed.footer, embed.glados);
+        .setFooter(embed.footer, embed.thumbnail);
 
     Client.channels.cache.get(channels.twitch).send(twitchEmbed);
 }
