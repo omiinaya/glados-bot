@@ -13,12 +13,13 @@ module.exports = {
     description: i18n.__('poll.description'),
     execute(msg) {
         var args = splitargs(msg.content)
+        var timer = args[2]*60*1000 //x minutes
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
             msg.reply('This command is not ready yet.')
-            if (args.length > 3 && args.length < 12) {
+            if (args.length > 4 && args.length < 12) {
                 var str = ''
                 var count = 0;
-                for (var i = 2; i < args.length; i++) {
+                for (var i = 3; i < args.length; i++) {
                     count++;
                     str += '\n' + count + ". " + args[i]
                 }
@@ -30,6 +31,7 @@ module.exports = {
                     .setTimestamp()
                     .setFooter(embed.footer, embed.glados);
                 msg.reply(pollEmbed).then(embedMessage => {
+                    console.log(timer)
                     var lines = str.split(/\r\n|\r|\n/)
                     lines.forEach(line => {
                         for (const key in numbers) {
@@ -40,7 +42,7 @@ module.exports = {
                     })
 
                     const filter = (reaction) => getNumbers().includes(reaction.emoji.name)
-                    const collector = embedMessage.createReactionCollector(filter, { max: 0, time: 5*60*1000, dispose: true }); // 5 min
+                    const collector = embedMessage.createReactionCollector(filter, { dispose: true }); // 5 min
                     collector.on('collect', (reaction, user) => {
                         if (reaction.users.cache.some(ruser => ruser.id !== config.botID)) {
                             reactionAdded(reaction, user)
