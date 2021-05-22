@@ -4,7 +4,7 @@ const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
 const splitargs = require('splitargs')
-const { getNumbers, test } = require('../scripts')
+const { getNumbers, getTimeLeft } = require('../scripts')
 
 i18n.setLocale(LOCALE);
 
@@ -13,7 +13,7 @@ module.exports = {
     description: i18n.__('poll.description'),
     execute(msg) {
         var args = splitargs(msg.content)
-        var timer = args[2]*60*1000 //x minutes
+        var timer = args[2] * 60 * 1000 //x minutes
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
             msg.reply('This command is not ready yet.')
             if (args.length > 4 && args.length < 12) {
@@ -31,9 +31,7 @@ module.exports = {
                     .setTimestamp()
                     .setFooter(embed.footer, embed.glados);
                 msg.reply(pollEmbed).then(embedMessage => {
-
-                    setTimeout(function() { removeReactions(embedMessage) }, timer);
-
+                    getTimeLeft(timer, embedMessage, msg, timer, removeReactions)
                     var lines = str.split(/\r\n|\r|\n/)
                     lines.forEach(line => {
                         for (const key in numbers) {
@@ -52,7 +50,7 @@ module.exports = {
                     });
 
                     collector.on('remove', (reaction, user) => {
-                            reactionRemoved(reaction, user)
+                        reactionRemoved(reaction, user)
                     });
                 })
             } else {
@@ -70,7 +68,15 @@ function reactionRemoved(reaction, user) {
     console.log('no')
 }
 
-function removeReactions(embedMessage) {
+function removeReactions(embedMessage, msg) {
     embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+    const resultEmbed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('placeholder')
+        .setDescription('placeholder')
+        .setThumbnail(embed.thumbnail)
+        .setTimestamp()
+        .setFooter(embed.footer, embed.glados);
+    msg.reply(resultEmbed)
     console.log('timesup')
 }

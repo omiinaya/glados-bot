@@ -77,11 +77,28 @@ function getNumbers() {
     return x
 }
 
-var y = [1, 2, 3]
+function msToTime(s) {
+    var ms = s % 1000;
+    s = (s - ms) / 1000;
+    var secs = s % 60;
+    s = (s - secs) / 60;
+    var mins = s % 60;
+    var hrs = (s - mins) / 60;
 
-function test(a) {
-    var x = y.includes(a)
-    return x
+    return hrs + ':' + mins + ':' + secs + '.' + ms;
+}
+
+function getTimeLeft(timer, embedMessage, msg, timer, removeReactions) {
+    var tick = timer
+    var tock = setInterval(() => {
+        tick = tick - 1000
+        if (tick < 1) {
+            clearInterval(tock);
+            removeReactions(embedMessage, msg, timer)
+        }
+        console.log(tick)
+        console.log(msToTime(tick))
+    }, 1000);
 }
 
 module.exports = {
@@ -93,5 +110,6 @@ module.exports = {
     updateStreamer,
     canModifyQueue,
     getNumbers,
-    test
+    msToTime,
+    getTimeLeft
 }
