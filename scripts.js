@@ -90,14 +90,15 @@ function msToTime(s) {
 function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions) {
     var tick = timer
     var tock = setInterval(() => {
-        tick = tick - 1000
+        tick = tick - 1200
         embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.glados))
         if (tick < 1) {
             clearInterval(tock);
             removeReactions(embedMessage, msg, timer)
         }
         return msToTime(tick)
-    }, 1000);
+    }, 1200);
+    //not exactly 1 second because discord api is shit
 }
 
 module.exports = {
