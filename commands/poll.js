@@ -27,8 +27,9 @@ module.exports = {
                     .setColor('#0099ff')
                     .setTitle(args[1])
                     .setDescription(str)
-                    .setThumbnail(embed.thumbnail)
-                    .setFooter(embed.footer + '  •  ' + msToTime(timer), embed.glados);
+                    .setThumbnail(embed.glados)
+                    .setTimestamp()
+                    .setFooter(embed.footer + '  •  ' + msToTime(timer), embed.thumbnail);
                 msg.reply(pollEmbed).then(embedMessage => {
                     getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions)
                     var lines = str.split(/\r\n|\r|\n/)
@@ -39,32 +40,12 @@ module.exports = {
                             }
                         }
                     })
-
-                    const filter = (reaction) => getNumbers().includes(reaction.emoji.name)
-                    const collector = embedMessage.createReactionCollector(filter, { dispose: true }); // 5 min
-                    collector.on('collect', (reaction, user) => {
-                        if (reaction.users.cache.some(ruser => ruser.id !== config.botID)) {
-                            reactionAdded(reaction, user)
-                        }
-                    });
-
-                    collector.on('remove', (reaction, user) => {
-                        reactionRemoved(reaction, user)
-                    });
                 })
             } else {
                 msg.reply('You need to provide a question, at least 2 options and at most 9.')
             }
         }
     }
-}
-
-function reactionAdded(reaction, user) {
-    console.log('yes')
-}
-
-function reactionRemoved(reaction, user) {
-    console.log('no')
 }
 
 function removeReactions(embedMessage, msg) {
@@ -85,7 +66,6 @@ function removeReactions(embedMessage, msg) {
     for (const key in results) {
         count++
         str += '\n' + `${key}` + " : " + progressBar(`${results[key]}`, realTotal)
-        //console.log(progressBar(`${results[key]}`, realTotal))
     }
     const resultEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')

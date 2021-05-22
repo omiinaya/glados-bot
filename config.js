@@ -80,7 +80,7 @@ var private = [
 ]
 
 var twitch = {
-    interval: 1000,
+    interval: 750,
     cooldown: 10*1000,
     apiUrl: "https://api.twitch.tv/helix",
     url: "https://twitch.tv/",

@@ -173,6 +173,6 @@
 		"description": "Ex. .roll or provide a range like so .roll 0 100"
 	},
 	"poll": {
-		"description": "Ex. .poll question ans1 ans2 ans3"
+		"description": "Ex. .poll 'question' time ans1 ans2 ans3"
 	}
 }
