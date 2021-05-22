@@ -45,12 +45,11 @@ module.exports = {
                         if (reaction.users.cache.some(ruser => ruser.id !== config.botID)) {
                             reactionAdded(reaction, user)
                         }
-                    })
+                    });
+
                     collector.on('remove', (reaction, user) => {
-                        if (reaction.users.cache.some(ruser => ruser.id !== config.botID)) {
                             reactionRemoved(reaction, user)
-                        }
-                    })
+                    });
                 })
             } else {
                 msg.reply('You need to provide a question, at least 2 options and at most 9.')
