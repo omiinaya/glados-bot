@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { config, numbers, embed } = require('./config')
+const { config, numbers, bars, embed } = require('./config')
 const BASEURL = config.baseURL
 
 function canModifyQueue(member) {
@@ -102,6 +102,13 @@ function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions
     //not exactly 1 second because discord api is shit
 }
 
+function progressBar(value, total) {
+   var x = ((value/total) * 100) / 4 // divided by 4 because 100 was too long
+   var y = bars['1']
+   var z = y.repeat(x)
+   return z
+}
+
 module.exports = {
     leadingZero,
     print,
@@ -112,5 +119,6 @@ module.exports = {
     canModifyQueue,
     getNumbers,
     msToTime,
-    getTimeLeft
+    getTimeLeft,
+    progressBar
 }

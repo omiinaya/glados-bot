@@ -4,7 +4,7 @@ const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
 const splitargs = require('splitargs')
-const { getNumbers, getTimeLeft, msToTime } = require('../scripts');
+const { getNumbers, getTimeLeft, msToTime, progressBar } = require('../scripts');
 
 i18n.setLocale(LOCALE);
 
@@ -69,21 +69,37 @@ function reactionRemoved(reaction, user) {
 
 function removeReactions(embedMessage, msg) {
     var results = {}
+    var total = 0
+    var str = ''
     embedMessage.reactions.cache.some(reaction => {
         if (getNumbers().includes(reaction.emoji.name)) {
             results[reaction.emoji.name] = reaction.count
+            total += reaction.count
         }
     })
-    console.log(results)
-    embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
-
+    for (const key in results) {
+        results[key] -= 1
+    }
+    var count = 0
+    var realTotal = total - 4
+    for (const key in results) {
+        count++
+        str += '\n' + `${key}` + " : " + progressBar(`${results[key]}`, realTotal)
+        //console.log(progressBar(`${results[key]}`, realTotal))
+    }
     const resultEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
-        .setTitle('placeholder')
-        .setDescription('placeholder')
+        .setTitle('Results: ')
+        .setDescription(str)
         .setThumbnail(embed.thumbnail)
         .setTimestamp()
         .setFooter(embed.footer, embed.glados);
     msg.reply(resultEmbed)
+    console.log(str)
+    console.log(realTotal)
+    embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+
+
+
     console.log('timesup')
 }
