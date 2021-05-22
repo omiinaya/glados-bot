@@ -2,7 +2,8 @@ var config = {
     message: '839717153141030932',
     prefix: '.',
     locale: "en",
-    baseURL: 'http://localhost:'+process.env.PORT
+    baseURL: 'http://localhost:'+process.env.PORT,
+    botID: '838105312544161804'
 }
 
 var channels = {

@@ -14,9 +14,8 @@ module.exports = {
     execute(msg) {
         var args = splitargs(msg.content)
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
-            console.log(args)
             msg.reply('This command is not ready yet.')
-            if (args.length > 2 && args.length < 12) {
+            if (args.length > 3 && args.length < 12) {
                 var str = ''
                 var count = 0;
                 for (var i = 2; i < args.length; i++) {
@@ -40,18 +39,30 @@ module.exports = {
                         }
                     })
 
-                    const filter = (reaction, user) => reaction.emoji.name === '1️⃣' && user.id === msg.author.id
-                    const collector = embedMessage.createReactionCollector(filter, { max: 0, time: 0 }); // 5 min
-
-                    collector.on('collect', () => {
-                        console.log(getNumbers())
-                        console.log(test('1'))
+                    const filter = (reaction) => getNumbers().includes(reaction.emoji.name)
+                    const collector = embedMessage.createReactionCollector(filter, { max: 0, time: 5*60*1000, dispose: true }); // 5 min
+                    collector.on('collect', (reaction, user) => {
+                        if (reaction.users.cache.some(ruser => ruser.id !== config.botID)) {
+                            reactionAdded(reaction, user)
+                        }
                     })
-
+                    collector.on('remove', (reaction, user) => {
+                        if (reaction.users.cache.some(ruser => ruser.id !== config.botID)) {
+                            reactionRemoved(reaction, user)
+                        }
+                    })
                 })
             } else {
                 msg.reply('You need to provide a question, at least 2 options and at most 9.')
             }
         }
     }
+}
+
+function reactionAdded(reaction, user) {
+    console.log('yes')
+}
+
+function reactionRemoved(reaction, user) {
+    console.log('no')
 }

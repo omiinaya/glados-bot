@@ -80,7 +80,7 @@ function getNumbers() {
 var y = [1, 2, 3]
 
 function test(a) {
-    var x = ([a].indexOf(y) !== -1)
+    var x = y.includes(a)
     return x
 }
 
