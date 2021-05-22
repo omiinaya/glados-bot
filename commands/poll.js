@@ -28,7 +28,6 @@ module.exports = {
                     .setTitle(args[1])
                     .setDescription(str)
                     .setThumbnail(embed.thumbnail)
-                    //.setTimestamp()
                     .setFooter(embed.footer + '  •  ' + msToTime(timer), embed.glados);
                 msg.reply(pollEmbed).then(embedMessage => {
                     getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions)

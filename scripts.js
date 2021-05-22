@@ -84,21 +84,18 @@ function msToTime(s) {
     s = (s - secs) / 60;
     var mins = s % 60;
     var hrs = (s - mins) / 60;
-
-    return hrs + ':' + mins + ':' + secs + '.' + ms;
+    return hrs + ':' + mins + ':' + secs;
 }
 
 function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions) {
     var tick = timer
     var tock = setInterval(() => {
         tick = tick - 1000
-        console.log(pollEmbed)
         embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.glados))
         if (tick < 1) {
             clearInterval(tock);
             removeReactions(embedMessage, msg, timer)
         }
-        console.log(msToTime(tick))
         return msToTime(tick)
     }, 1000);
 }
