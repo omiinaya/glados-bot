@@ -4,7 +4,7 @@ const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
 const splitargs = require('splitargs')
-const { getNumbers, getTimeLeft, msToTime } = require('../scripts')
+const { getNumbers, getTimeLeft, msToTime } = require('../scripts');
 
 i18n.setLocale(LOCALE);
 
@@ -68,7 +68,15 @@ function reactionRemoved(reaction, user) {
 }
 
 function removeReactions(embedMessage, msg) {
+    var results = {}
+    embedMessage.reactions.cache.some(reaction => {
+        if (getNumbers().includes(reaction.emoji.name)) {
+            results[reaction.emoji.name] = reaction.count
+        }
+    })
+    console.log(results)
     embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+
     const resultEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('placeholder')

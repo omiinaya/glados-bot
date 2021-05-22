@@ -1,10 +1,10 @@
 const { play } = require("../modules/player");
 const ytdl = require("ytdl-core");
 const YouTubeAPI = require("simple-youtube-api");
-const scdl = require("soundcloud-downloader").default
+//const scdl = require("soundcloud-downloader").default
 const https = require("https");
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
+//const SOUNDCLOUD_CLIENT_ID = process.env.SOUNDCLOUD_CLIENT_ID;
 const { config, music } = require('../config')
 const youtube = new YouTubeAPI(YOUTUBE_API_KEY);
 const i18n = require("i18n");
@@ -38,7 +38,7 @@ module.exports = {
     const search = args.join(" ");
     const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
     const playlistPattern = /^.*(list=)([^#\&\?]*).*/gi;
-    const scRegex = /^https?:\/\/(soundcloud\.com)\/(.*)$/;
+    //const scRegex = /^https?:\/\/(soundcloud\.com)\/(.*)$/;
     const mobileScRegex = /^https?:\/\/(soundcloud\.app\.goo\.gl)\/(.*)$/;
     const url = args[0];
     const urlValid = videoPattern.test(args[0]);
@@ -91,7 +91,7 @@ module.exports = {
         console.error(error);
         return message.reply(error.message).catch(console.error);
       }
-    } else if (scRegex.test(url)) {
+    /*} else if (scRegex.test(url)) {
       try {
         const trackInfo = await scdl.getInfo(url, SOUNDCLOUD_CLIENT_ID);
         song = {
@@ -102,7 +102,7 @@ module.exports = {
       } catch (error) {
         console.error(error);
         return message.reply(error.message).catch(console.error);
-      }
+      }*/
     } else {
       try {
         const results = await youtube.searchVideos(search, 1, { part: "snippet" });

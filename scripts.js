@@ -96,6 +96,7 @@ function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions
             clearInterval(tock);
             removeReactions(embedMessage, msg, timer)
         }
+        console.log(msToTime(tick))
         return msToTime(tick)
     }, 1200);
     //not exactly 1 second because discord api is shit
