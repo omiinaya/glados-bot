@@ -15,7 +15,6 @@ module.exports = {
         var args = splitargs(msg.content)
         var timer = args[2] * 60 * 1000 //x minutes
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
-            msg.reply('This command is not ready yet.')
             if (args.length > 4 && args.length < 12) {
                 var str = ''
                 var count = 0;
@@ -25,7 +24,7 @@ module.exports = {
                 }
                 const pollEmbed = new Discord.MessageEmbed()
                     .setColor('#0099ff')
-                    .setTitle(args[1])
+                    .setTitle('Poll: '+args[1])
                     .setDescription(str)
                     .setThumbnail(embed.glados)
                     .setTimestamp()
@@ -79,7 +78,7 @@ function removeReactions(embedMessage, msg) {
         .setTimestamp()
         .setFooter(embed.footer, embed.thumbnail);
     msg.reply(resultEmbed)
-    
+
     embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
 
     console.log('timesup')
