@@ -31,7 +31,9 @@ module.exports = {
                     .setTimestamp()
                     .setFooter(embed.footer, embed.glados);
                 msg.reply(pollEmbed).then(embedMessage => {
-                    console.log(timer)
+
+                    setTimeout(function() { removeReactions(embedMessage) }, timer);
+
                     var lines = str.split(/\r\n|\r|\n/)
                     lines.forEach(line => {
                         for (const key in numbers) {
@@ -66,4 +68,9 @@ function reactionAdded(reaction, user) {
 
 function reactionRemoved(reaction, user) {
     console.log('no')
+}
+
+function removeReactions(embedMessage) {
+    embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+    console.log('timesup')
 }
