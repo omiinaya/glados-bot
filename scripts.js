@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { config, numbers } = require('./config')
+const { config, numbers, embed } = require('./config')
 const BASEURL = config.baseURL
 
 function canModifyQueue(member) {
@@ -88,16 +88,18 @@ function msToTime(s) {
     return hrs + ':' + mins + ':' + secs + '.' + ms;
 }
 
-function getTimeLeft(timer, embedMessage, msg, timer, removeReactions) {
+function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions) {
     var tick = timer
     var tock = setInterval(() => {
         tick = tick - 1000
+        console.log(pollEmbed)
+        embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.glados))
         if (tick < 1) {
             clearInterval(tock);
             removeReactions(embedMessage, msg, timer)
         }
-        console.log(tick)
         console.log(msToTime(tick))
+        return msToTime(tick)
     }, 1000);
 }
 

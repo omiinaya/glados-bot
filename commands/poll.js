@@ -4,7 +4,7 @@ const PREFIX = config.prefix
 const LOCALE = config.locale
 const i18n = require("i18n");
 const splitargs = require('splitargs')
-const { getNumbers, getTimeLeft } = require('../scripts')
+const { getNumbers, getTimeLeft, msToTime } = require('../scripts')
 
 i18n.setLocale(LOCALE);
 
@@ -28,10 +28,10 @@ module.exports = {
                     .setTitle(args[1])
                     .setDescription(str)
                     .setThumbnail(embed.thumbnail)
-                    .setTimestamp()
-                    .setFooter(embed.footer, embed.glados);
+                    //.setTimestamp()
+                    .setFooter(embed.footer + '  •  ' + msToTime(timer), embed.glados);
                 msg.reply(pollEmbed).then(embedMessage => {
-                    getTimeLeft(timer, embedMessage, msg, timer, removeReactions)
+                    getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions)
                     var lines = str.split(/\r\n|\r|\n/)
                     lines.forEach(line => {
                         for (const key in numbers) {
