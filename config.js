@@ -106,4 +106,13 @@ var embed = {
     glados: 'https://i.imgur.com/OsnSOeR.png'
 }
 
-module.exports = { config, emojis, roles, music, twitch, private, channels, numbers, bars, embed }
+var database = {
+    dialect: 'mysql',
+    operatorAliases: false,
+    max: 1,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+}
+
+module.exports = { config, emojis, roles, music, twitch, private, channels, numbers, bars, embed, database }

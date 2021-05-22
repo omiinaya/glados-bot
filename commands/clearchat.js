@@ -34,9 +34,12 @@ function clearchat(msg) {
 }
 
 function clearchat2(msg, quantity) {
+    var x = parseInt(quantity) + 1
+    console.log(x)
+
     async function clear() {
         msg.delete();
-        const fetched = await msg.channel.messages.fetch({ limit: quantity+1 });
+        const fetched = await msg.channel.messages.fetch({ limit: x });
         msg.channel.bulkDelete(fetched);
     }
     clear();

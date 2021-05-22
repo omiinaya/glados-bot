@@ -21,7 +21,7 @@ module.exports = {
                 var count = 0;
                 for (var i = 3; i < args.length; i++) {
                     count++;
-                    str += '\n' + count + ". " + args[i]
+                    str += '\n' + getNumbers()[count-1] + ": " + args[i]
                 }
                 const pollEmbed = new Discord.MessageEmbed()
                     .setColor('#0099ff')
@@ -58,15 +58,19 @@ function removeReactions(embedMessage, msg) {
             total += reaction.count
         }
     })
+
     for (const key in results) {
         results[key] -= 1
     }
+
     var count = 0
-    var realTotal = total - 4
+
     for (const key in results) {
         count++
-        str += '\n' + `${key}` + " : " + progressBar(`${results[key]}`, realTotal)
+        console.log(results)
+        str += '\n' + `${key}` + " : " + progressBar(`${results[key]}`, total)
     }
+
     const resultEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('Results: ')
@@ -75,8 +79,7 @@ function removeReactions(embedMessage, msg) {
         .setTimestamp()
         .setFooter(embed.footer, embed.thumbnail);
     msg.reply(resultEmbed)
-    console.log(str)
-    console.log(realTotal)
+    
     embedMessage.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
 
     console.log('timesup')
