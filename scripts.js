@@ -84,13 +84,21 @@ function msToTime(s) {
     s = (s - secs) / 60;
     var mins = s % 60;
     var hrs = (s - mins) / 60;
-    return hrs + ':' + mins + ':' + secs;
+    if (mins >= 60) {
+        return hrs + ' hours left.'
+    } else if (mins < 60) {
+        return mins + ' mins left'
+    } else {
+        return secs + 'seconds left'
+    }
+    
+   // return hrs + ':' + mins + ':' + secs;
 }
 
 function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions) {
     var tick = timer
     var tock = setInterval(() => {
-        tick = tick - 1200
+        tick = tick - 5000
         embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.thumbnail))
         if (tick < 1) {
             clearInterval(tock);
@@ -98,7 +106,7 @@ function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions
         }
         console.log(msToTime(tick))
         return msToTime(tick)
-    }, 1200);
+    }, 5000);
     //not exactly 1 second because discord api is shit
 }
 
