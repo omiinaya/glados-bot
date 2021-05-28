@@ -86,9 +86,11 @@ function msToTime(s) {
     var hrs = (s - mins) / 60;
     if (mins >= 60) {
         return hrs + ' hours left.'
-    } else if (mins < 60) {
+    }
+    if (mins < 60) {
         return mins + ' mins left'
-    } else {
+    }
+    if (mins <= 0) {
         return secs + 'seconds left'
     }
     
