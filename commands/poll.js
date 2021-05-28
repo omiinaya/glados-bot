@@ -13,7 +13,9 @@ module.exports = {
     description: i18n.__('poll.description'),
     execute(msg) {
         var args = splitargs(msg.content)
+        console.log(args)
         var timer = args[2] * 60 * 1000 //x minutes
+        console.log(timer)
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
             if (args.length > 4 && args.length < 12) {
                 var str = ''
@@ -28,7 +30,7 @@ module.exports = {
                     .setDescription(str)
                     .setThumbnail(embed.glados)
                     .setTimestamp()
-                    .setFooter(embed.footer + '  •  ' + msToTime(parseInt(timer)), embed.thumbnail);
+                    .setFooter(embed.footer + '  •  ' + msToTime(timer), embed.thumbnail);
                 msg.reply(pollEmbed).then(embedMessage => {
                     getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions)
                     var lines = str.split(/\r\n|\r|\n/)
