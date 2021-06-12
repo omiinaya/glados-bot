@@ -41,3 +41,5 @@ client.on('ready', () => {
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help for commands`, { type: "LISTENING" });
 });
+
+module.exports = client;

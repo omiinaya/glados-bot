@@ -174,5 +174,11 @@
 	},
 	"poll": {
 		"description": "Ex. .poll 'question' time ans1 ans2 ans3"
+	},
+	"kick": {
+		"description": "kick.description"
+	},
+	"fire": {
+		"description": "fire.description"
 	}
 }
