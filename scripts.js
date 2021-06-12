@@ -77,20 +77,38 @@ function getNumbers() {
     return x
 }
 
-function msToTime(s) {
+function msToTime(ms) {
+    console.log(ms)
+    /*
     var ms = s % 1000;
     s = (s - ms) / 1000;
     var secs = s % 60;
     s = (s - secs) / 60;
     var mins = s % 60;
     var hrs = (s - mins) / 60;
-    return hrs + ':' + mins + ':' + secs;
+    */
+    var seconds = parseInt((ms / 1000) % 60)
+    var minutes = parseInt((ms / (1000 * 60)) % 60)
+    var hours = parseInt((ms / (1000 * 60 * 60)) % 24);
+    
+    console.log(minutes)
+
+    if (hours > 0) {
+        return hours + ' hours left.'
+    } else if (hours <= 0 && minutes > 0) {
+        return minutes + ' mins left'
+    } else if (minutes <= 0 && seconds > 0) {
+        return seconds + ' seconds left'
+    } else {
+      return 0 + ' seconds left'
+    }
+   // return hrs + ':' + mins + ':' + secs;
 }
 
 function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions) {
     var tick = timer
     var tock = setInterval(() => {
-        tick = tick - 1200
+        tick = tick - 5000
         embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.thumbnail))
         if (tick < 1) {
             clearInterval(tock);
@@ -98,14 +116,15 @@ function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions
         }
         console.log(msToTime(tick))
         return msToTime(tick)
-    }, 1200);
+    }, 5000);
     //not exactly 1 second because discord api is shit
 }
 
 function progressBar(value, total) {
-   var x = ((value/total) * 100)
+   var x = ((value/total) * 100) / 2.2
    var y = bars['1']
    var z = y.repeat(x)
+   console.log(x)
    return z
 }
 
