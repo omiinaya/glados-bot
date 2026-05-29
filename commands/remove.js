@@ -16,11 +16,11 @@ module.exports = {
     if (!canModifyQueue(message.member)) return i18n.__("common.errorNotChannel");
     if (!args.length) return message.reply(i18n.__mf("remove.usageReply", { prefix: message.client.prefix }));
 
-    const arguments = args.join("");
-    const songs = arguments.split(",").map((arg) => parseInt(arg));
+    const argsStr = args.join("");
+    const songs = argsStr.split(",").map((arg) => parseInt(arg));
     let removed = [];
 
-    if (pattern.test(arguments)) {
+    if (pattern.test(argsStr)) {
       queue.songs = queue.songs.filter((item, index) => {
         if (songs.find((songIndex) => songIndex - 1 === index)) removed.push(item);
         else return true;
