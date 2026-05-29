@@ -105,7 +105,7 @@ function msToTime(ms) {
    // return hrs + ':' + mins + ':' + secs;
 }
 
-function getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions) {
+function getTimeLeft(timer, embedMessage, msg, pollEmbed, removeReactions) {
     var tick = timer
     var tock = setInterval(() => {
         tick = tick - 5000
