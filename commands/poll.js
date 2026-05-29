@@ -32,7 +32,7 @@ module.exports = {
                     .setTimestamp()
                     .setFooter(embed.footer + '  •  ' + msToTime(timer), embed.thumbnail);
                 msg.reply(pollEmbed).then(embedMessage => {
-                    getTimeLeft(timer, embedMessage, msg, pollEmbed, timer, removeReactions)
+                    getTimeLeft(timer, embedMessage, msg, pollEmbed, removeReactions)
                     var lines = str.split(/\r\n|\r|\n/)
                     lines.forEach(line => {
                         for (const key in numbers) {
