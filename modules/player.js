@@ -128,7 +128,7 @@ module.exports = {
           if (!canModifyQueue(member)) return i18n.__("common.errorNotChannel");
           if (queue.volume <= 0) {
             queue.volume = 100;
-            queue.connection.dispatcher.setVolumeLogarithmic(100 / 100);
+            queue.connection.dispatcher.setVolumeLogarithmic(queue.volume / 100);
             queue.textChannel.send(i18n.__mf("play.unmutedSong", { author: user })).catch(console.error);
           } else {
             queue.volume = 0;
