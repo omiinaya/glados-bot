@@ -7,9 +7,6 @@ const Streamer = require("../models/Streamer")
 const streamers = express.Router()
 streamers.use(cors())
 
-//token encryption key
-SECRET_KEY = process.env.SECRET_KEY
-
 
 //find all users
 streamers.get("/all", function (req, res) {
