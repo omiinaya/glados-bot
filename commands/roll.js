@@ -10,9 +10,10 @@ function roll1() {
 }
 
 function roll2(a, b) {
-    lowest = parseInt(a)
-    highest = parseInt(b)
-    return Math.floor(Math.random() * highest) + lowest; 
+    const lowest = parseInt(a);
+    const highest = parseInt(b);
+    if (isNaN(lowest) || isNaN(highest)) return 0;
+    return Math.floor(Math.random() * (highest - lowest + 1)) + lowest;
 }
 
 module.exports = {
