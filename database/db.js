@@ -14,7 +14,7 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
     pool: {
         max: database.max,   
         min: database.min,
-        acquire: database.aqcuire,
+        acquire: database.acquire,
         idle: database.idle
     }
 }) 
