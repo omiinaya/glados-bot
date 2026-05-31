@@ -10,7 +10,6 @@ module.exports = {
     name: "kick",
     description: i18n.__('kick.description'),
     execute(msg) {
-        var args = msg.content.trim().split(/ +/g);
         if (msg.content.toLowerCase().startsWith(PREFIX + "kick")) {
             if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
                 const user = msg.mentions.users.first()
