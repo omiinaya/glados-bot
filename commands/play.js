@@ -51,7 +51,7 @@ module.exports = {
     if (mobileScRegex.test(url)) {
       try {
         https.get(url, function (res) {
-          if (res.statusCode == "302") {
+          if (res.statusCode === 302) {
             return message.client.commands.get("play").execute(message, [res.headers.location]);
           } else {
             return message.reply("No content could be found at that url.").catch(console.error);
