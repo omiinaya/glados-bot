@@ -14,7 +14,7 @@ function startRolesModule(client) {
         if (reaction.partial) await reaction.fetch();
         if (user.bot) return;
         if (!reaction.message.guild) return;
-        if (reaction.message.id == config.message) {
+        if (reaction.message.id === config.message) {
             console.log(reaction.emoji.id)
             for (const key in emojis) {
                 if (reaction.emoji.id === `${emojis[key]}` || reaction.emoji.name === `${emojis[key]}`) {
@@ -24,7 +24,7 @@ function startRolesModule(client) {
                             return
                         }
                     })
-                    var currentEmoji = `${key}`
+                    const currentEmoji = `${key}`
                     await reaction.message.guild.members.cache.get(user.id).roles[action](roles[currentEmoji]);
                 }
             }
