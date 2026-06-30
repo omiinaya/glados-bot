@@ -10,7 +10,7 @@ module.exports = {
     description: i18n.__('clearchat.description'),
     execute(msg) {
         if (msg.content.toLowerCase().startsWith(PREFIX + "clearchat")) {
-            var args = msg.content.trim().split(/ +/g);
+            const args = msg.content.trim().split(/ +/g);
             if (msg.member.roles.cache.some(role => role.name === 'Sullen')) {
                 if (args.length > 1) {
                     clearchat2(msg, args[1])
@@ -34,7 +34,7 @@ function clearchat(msg) {
 }
 
 function clearchat2(msg, quantity) {
-    var x = parseInt(quantity) + 1
+    const x = parseInt(quantity) + 1
     console.log(x)
 
     async function clear() {

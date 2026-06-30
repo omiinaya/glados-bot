@@ -11,8 +11,8 @@ module.exports = {
     name: "fire",
     description: i18n.__('fire.description'),
     execute(msg) {
-        //var args = msg.content.trim().split(/ +/g);
-        var user = msg.mentions.users.first()
+        //const args = msg.content.trim().split(/ +/g);
+        const user = msg.mentions.users.first()
         console.log(user.username)
         if (msg.content.toLowerCase().startsWith(PREFIX + "fire")) {
             msg.reply(user.username + ' has been fired.')

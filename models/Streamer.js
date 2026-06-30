@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize")
 const db = require("../database/db")
 
-var Streamers = db.sequelize.define(
+const Streamers = db.sequelize.define(
     'streamer',
     {
         id: {

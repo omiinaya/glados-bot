@@ -21,7 +21,7 @@ function startTwitchModule(client) {
 function tick(cooldown) {
     setInterval(function () {
         getList().then(streamers => {
-            var promise = Promise.resolve();
+            let promise = Promise.resolve();
             streamers.forEach(streamer => {
                 promise = promise.then(function () {
                     getStreamStatus(streamer.name)
@@ -36,14 +36,14 @@ function tick(cooldown) {
 }
 
 function getStreamStatus(input) {
-    var url = APIURL + "/search/channels?query=" + input
+    const url = APIURL + "/search/channels?query=" + input
     axios.get(url, {
         headers: {
             'Client-ID': twitchClientID,
             'Authorization': twitchOAuthID
         }
     }).then(res => {
-        var streamers = res.data.data
+        const streamers = res.data.data
         streamers.forEach((streamer) => {
             if (streamer.display_name.toUpperCase() === input.toUpperCase()) {
                 updateList(streamer.display_name, streamer.is_live, streamer.title, streamer.game_name, streamer.thumbnail_url)

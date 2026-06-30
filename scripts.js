@@ -21,10 +21,10 @@ function leadingZero(d) {
 }
 
 function print(msg, err) {
-    var date = new Date();
-    var h = leadingZero(date.getHours());
-    var m = leadingZero(date.getMinutes());
-    var s = leadingZero(date.getSeconds());
+    const date = new Date();
+    const h = leadingZero(date.getHours());
+    const m = leadingZero(date.getMinutes());
+    const s = leadingZero(date.getSeconds());
 
     console.log("[" + h + ":" + m + ":" + s + "]", msg);
     if (err) {
@@ -70,7 +70,7 @@ function updateStreamer(name, status) {
 }
 
 function getNumbers() {
-    var x = []
+    const x = []
     for (const key in numbers) {
         x.push(key)
     }
@@ -87,9 +87,9 @@ function msToTime(ms) {
     var mins = s % 60;
     var hrs = (s - mins) / 60;
     */
-    var seconds = parseInt((ms / 1000) % 60)
-    var minutes = parseInt((ms / (1000 * 60)) % 60)
-    var hours = parseInt((ms / (1000 * 60 * 60)) % 24);
+    const seconds = parseInt((ms / 1000) % 60)
+    const minutes = parseInt((ms / (1000 * 60)) % 60)
+    const hours = parseInt((ms / (1000 * 60 * 60)) % 24);
     
     console.log(minutes)
 
@@ -106,8 +106,8 @@ function msToTime(ms) {
 }
 
 function getTimeLeft(timer, embedMessage, msg, pollEmbed, removeReactions) {
-    var tick = timer
-    var tock = setInterval(() => {
+    let tick = timer
+    const tock = setInterval(() => {
         tick = tick - 5000
         embedMessage.edit(pollEmbed.setFooter(embed.footer + '  •  ' + msToTime(tick), embed.thumbnail))
         if (tick < 1) {
@@ -117,13 +117,12 @@ function getTimeLeft(timer, embedMessage, msg, pollEmbed, removeReactions) {
         console.log(msToTime(tick))
         return msToTime(tick)
     }, 5000);
-    //not exactly 1 second because discord api is shit
 }
 
 function progressBar(value, total) {
-   var x = ((value/total) * 100) / 2.2
-   var y = bars['1']
-   var z = y.repeat(x)
+   const x = ((value/total) * 100) / 2.2
+   const y = bars['1']
+   const z = y.repeat(x)
    console.log(x)
    return z
 }

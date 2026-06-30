@@ -1,4 +1,4 @@
-var config = {
+const config = {
     message: '839717153141030932',
     prefix: '.',
     locale: "en",
@@ -6,14 +6,14 @@ var config = {
     botID: '838105312544161804'
 }
 
-var channels = {
+const channels = {
     roles:   '839716692501594152',
     logs:    '838830641910775838',
     test:    '841691435232788530',
     twitch:  '839566399097667594'
 }
 
-var emojis = {
+const emojis = {
     warzone:   '839727811974922251',
     valorant:  '839738631798390795',
     wow:       '839743323883307028',
@@ -36,7 +36,7 @@ var emojis = {
     '🚑':      '🚑'
 }
 
-var roles = {
+const roles = {
     warzone:   '838106791664418878',
     valorant:  '838331897125011488',
     wow:       '838222334187405312',
@@ -60,7 +60,7 @@ var roles = {
 
 }
 
-var numbers = {
+const numbers = {
     '1️⃣': 1,
     '2️⃣': 2,
     '3️⃣': 3,
@@ -72,14 +72,14 @@ var numbers = {
     '9️⃣': 9
 }
 
-var private = [
+const private_list = [
     '🛠️',
     '💻',
     '📧',
     '🚑'
 ]
 
-var twitch = {
+const twitch = {
     interval: 500,
     cooldown: 10*1000,
     apiUrl: "https://api.twitch.tv/helix",
@@ -87,7 +87,7 @@ var twitch = {
     timeout: 2*60*1000
 }
 
-var music = {
+const music = {
     max_playlist_size: '10',
     pruning: false,
     locale: "en",
@@ -95,18 +95,18 @@ var music = {
     default_volume: "30"
 }
 
-var bars = {
+const bars = {
     '1':'█',
     '2':'⬤',
 }
 
-var embed = {
+const embed = {
     footer: 'Brough to you by .nf',
     thumbnail: 'https://i.imgur.com/hXQLQJv.jpg',
     glados: 'https://i.imgur.com/OsnSOeR.png'
 }
 
-var database = {
+const database = {
     dialect: 'mysql',
     operatorAliases: false,
     max: 1,
@@ -115,4 +115,4 @@ var database = {
     idle: 10000
 }
 
-module.exports = { config, emojis, roles, music, twitch, private, channels, numbers, bars, embed, database }
+module.exports = { config, emojis, roles, music, twitch, private_list, channels, numbers, bars, embed, database }

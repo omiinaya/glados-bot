@@ -12,15 +12,15 @@ module.exports = {
     name: "poll",
     description: i18n.__('poll.description'),
     execute(msg) {
-        var args = splitargs(msg.content)
+        const args = splitargs(msg.content)
         console.log(args)
-        var timer = args[2] * 60 * 1000 //x minutes
+        const timer = args[2] * 60 * 1000 //x minutes
         console.log(timer)
         if (msg.content.toLowerCase().startsWith(PREFIX + "poll")) {
             if (args.length > 4 && args.length < 12) {
-                var str = ''
-                var count = 0;
-                for (var i = 3; i < args.length; i++) {
+                let str = ''
+                let count = 0;
+                for (let i = 3; i < args.length; i++) {
                     count++;
                     str += '\n' + getNumbers()[count-1] + ": " + args[i]
                 }
@@ -50,9 +50,9 @@ module.exports = {
 }
 
 function removeReactions(embedMessage, msg) {
-    var results = {}
-    var total = 0
-    var str = ''
+    const results = {}
+    let total = 0
+    let str = ''
     embedMessage.reactions.cache.some(reaction => {
         if (getNumbers().includes(reaction.emoji.name)) {
             results[reaction.emoji.name] = reaction.count
@@ -64,7 +64,7 @@ function removeReactions(embedMessage, msg) {
         results[key] -= 1
     }
 
-    var count = 0
+    let count = 0
 
     for (const key in results) {
         count++

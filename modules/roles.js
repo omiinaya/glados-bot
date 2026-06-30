@@ -1,4 +1,4 @@
-const { config, emojis, roles, private, channels } = require('../config')
+const { config, emojis, roles, private_list, channels } = require('../config')
 
 function startRolesModule(client) {
     client.on('messageReactionAdd', (reaction, user) => {
@@ -18,7 +18,7 @@ function startRolesModule(client) {
             console.log(reaction.emoji.id)
             for (const key in emojis) {
                 if (reaction.emoji.id === `${emojis[key]}` || reaction.emoji.name === `${emojis[key]}`) {
-                    private.forEach(role => {
+                    private_list.forEach(role => {
                         if (reaction.emoji.name === role && !reaction.message.member.roles.cache.some(role => role.name === 'Origin')) {
                             client.channels.cache.get(channels.logs).send('<@' + reaction.message.member.user.id + '>, you are not an Origin employee.');
                             return

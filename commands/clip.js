@@ -2,7 +2,7 @@ const { config } = require('../config')
 const i18n = require("i18n");
 i18n.setLocale(config.locale);
 
-var clip = {
+const clip = {
   name: "clip",
   description: i18n.__('clip.description'),
   async execute(message, args) {

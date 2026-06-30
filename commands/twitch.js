@@ -16,10 +16,10 @@ module.exports = {
     name: "twitch",
     description: i18n.__('twitch.description'),
     execute(msg) {
-        var args = msg.content.trim().split(/ +/g);
+        const args = msg.content.trim().split(/ +/g);
         if (msg.content.toLowerCase().startsWith(PREFIX + "twitch")) {
             if (args[1] === 'add') {
-                var url = APIURL + "/users?login=" + args[2]
+                const url = APIURL + "/users?login=" + args[2]
                 axios.get(url, {
                     headers: {
                         'Client-ID': twitchClientID,
@@ -28,7 +28,7 @@ module.exports = {
                 }).then(res => {
                     if (res.data.data) {
                         getList().then(streamers => {
-                            var displayName = res.data.data[0].display_name
+                            const displayName = res.data.data[0].display_name
                             if (streamers.some(streamer => streamer.name === displayName)) {
                                 //alert streamer has already been added
                                 msg.reply(displayName + ' is alreday on the list.')
@@ -57,8 +57,8 @@ module.exports = {
             }
             if (args[1] === 'list') {
                 getList().then(res => {
-                    var count = 0;
-                    var str = '';
+                    let count = 0;
+                    let str = '';
                     res.forEach(streamer => {
                         count++
                         str += '\n' + count + ". " + streamer.name

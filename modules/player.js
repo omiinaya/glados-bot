@@ -76,7 +76,7 @@ module.exports = {
     dispatcher.setVolumeLogarithmic(queue.volume / 100);
 
     try {
-      var playingMessage = await queue.textChannel.send(
+      const playingMessage = await queue.textChannel.send(
         i18n.__mf("play.startedPlaying", { title: song.title, url: song.url })
       );
       await playingMessage.react("⏭");
@@ -91,7 +91,7 @@ module.exports = {
     }
 
     const filter = (reaction, user) => user.id !== message.client.user.id;
-    var collector = playingMessage.createReactionCollector(filter, {
+    const collector = playingMessage.createReactionCollector(filter, {
       time: song.duration > 0 ? song.duration * 1000 : 600000
     });
 
