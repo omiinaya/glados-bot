@@ -82,7 +82,7 @@ module.exports = {
     }
 
     const newSongs = videos
-      .filter((video) => video.title != "Private video" && video.title != "Deleted video")
+      .filter((video) => video.title !== "Private video" && video.title !== "Deleted video")
       .map((video) => {
         return (song = {
           title: video.title,

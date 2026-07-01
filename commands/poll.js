@@ -33,7 +33,7 @@ module.exports = {
                     .setFooter(embed.footer + '  •  ' + msToTime(timer), embed.thumbnail);
                 msg.reply(pollEmbed).then(embedMessage => {
                     getTimeLeft(timer, embedMessage, msg, pollEmbed, removeReactions)
-                    var lines = str.split(/\r\n|\r|\n/)
+                    const lines = str.split(/\r\n|\r|\n/)
                     lines.forEach(line => {
                         for (const key in numbers) {
                             if (line.charAt(0) === `${numbers[key]}`) {

@@ -18,14 +18,14 @@ module.exports = {
     if (isNaN(args[0]) || args[0] <= 1)
       return message.reply(i18n.__mf("move.usagesReply", { prefix: message.client.prefix }));
 
-    let song = queue.songs[args[0] - 1];
+    const song = queue.songs[args[0] - 1];
 
-    queue.songs = move(queue.songs, args[0] - 1, args[1] == 1 ? 1 : args[1] - 1);
+    queue.songs = move(queue.songs, args[0] - 1, args[1] === 1 ? 1 : args[1] - 1);
     queue.textChannel.send(
       i18n.__mf("move.result", {
         author: message.author,
         title: song.title,
-        index: args[1] == 1 ? 1 : args[1]
+        index: args[1] === 1 ? 1 : args[1]
       })
     );
   }
